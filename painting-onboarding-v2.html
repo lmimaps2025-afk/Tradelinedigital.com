@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TradeLine Digital — Painting Contractor Setup</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0b1628;
+    --navy-mid:   #12213a;
+    --navy-light: #1a2e4a;
+    --gold:       #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-dim:   rgba(201,168,76,0.10);
+    --gold-rule:  rgba(201,168,76,0.25);
+    --ink:        #1a1a2e;
+    --body:       #f5f7fa;
+    --white:      #ffffff;
+    --text:       #1c2b3a;
+    --muted:      #5a6f85;
+    --border:     #dce4ed;
+    --radius:     8px;
+    --shadow:     0 2px 12px rgba(11,22,40,0.08);
+    --shadow-lg:  0 8px 32px rgba(11,22,40,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: var(--body);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 110px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: 0 20px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .logo span { color: var(--gold); }
+
+  .header-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-rule);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-outer {
+    background: var(--navy-mid);
+    padding: 10px 20px 12px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .progress-section { color: var(--gold); }
+  .progress-count   { color: rgba(255,255,255,0.35); }
+
+  .progress-track {
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: width 0.45s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 28px 18px 0;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; }
+  .screen.active {
+    display: block;
+    animation: fadeUp 0.3s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION TAG ── */
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold-rule);
+  }
+
+  /* ── QUESTION ── */
+  .question {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .hint {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 22px;
+    font-weight: 400;
+  }
+
+  /* ── OPTION BUTTONS ── */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .opt {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.3;
+    box-shadow: var(--shadow);
+    -webkit-appearance: none;
+    width: 100%;
+  }
+
+  .opt:hover {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  .opt.selected {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .opt.other-opt {
+    border-style: dashed;
+    color: var(--muted);
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .opt.other-opt:hover { color: var(--text); border-color: var(--navy); }
+  .opt.other-opt.selected { border-style: solid; }
+
+  /* Multi-select check */
+  .check {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+
+  .opt.selected .check {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .opt.selected .check::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--navy);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translateY(-1px);
+    display: block;
+  }
+
+  .multi-note {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  /* ── OTHER INPUT ── */
+  .other-wrap {
+    display: none;
+    margin-bottom: 14px;
+  }
+  .other-wrap.visible { display: block; }
+
+  /* ── FIELD ── */
+  .field { margin-bottom: 14px; }
+
+  .field-label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .field-input {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 13px 14px;
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    box-shadow: var(--shadow);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .field-input:focus {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(11,22,40,0.08);
+  }
+
+  .field-input::placeholder { color: var(--muted); opacity: 0.5; }
+
+  textarea.field-input {
+    resize: none;
+    min-height: 90px;
+    line-height: 1.5;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Price prefix */
+  .price-wrap { position: relative; }
+  .price-prefix {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 15px;
+    pointer-events: none;
+  }
+  .price-wrap .field-input { padding-left: 26px; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 22px 0;
+  }
+
+  /* Sub-question (smaller) */
+  .sub-question {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── WELCOME ── */
+  .welcome-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .welcome-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+
+  .welcome-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .welcome-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .welcome-steps {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+
+  .welcome-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .welcome-step:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-time {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ── DONE SCREEN ── */
+  .done-rule {
+    width: 40px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .done-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .done-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .summary-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .summary-row:last-child { border-bottom: none; }
+
+  .summary-key {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .summary-val {
+    font-weight: 500;
+    color: var(--text);
+    text-align: right;
+  }
+
+  .contact-card {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-top: 16px;
+  }
+
+  .contact-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  .contact-card strong { color: var(--white); }
+  .contact-card a { color: var(--gold); text-decoration: none; }
+
+  /* ── BUTTONS ── */
+  .btn-start {
+    width: 100%;
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 17px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .btn-start:hover {
+    background: var(--navy-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* ── STICKY NAV ── */
+  .nav-outer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: linear-gradient(to top, var(--body) 75%, transparent);
+    padding: 14px 18px 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .nav-back {
+    width: 50px;
+    height: 52px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .nav-back:hover { border-color: var(--navy); color: var(--navy); }
+
+  .nav-next {
+    flex: 1;
+    height: 52px;
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    border-bottom: 3px solid var(--gold);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .nav-next:hover {
+    background: var(--navy-light);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-next:disabled {
+    background: var(--border);
+    color: var(--muted);
+    border-bottom-color: transparent;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* ── HIDDEN FORMSPREE FIELDS ── */
+  .hidden { display: none; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">TradeLine<span>Digital</span></div>
+  <div class="header-tag">Painting Setup</div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-outer">
+  <div class="progress-meta">
+    <span class="progress-section" id="progressSection">Getting Started</span>
+    <span class="progress-count" id="progressCount"></span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- CONTAINER -->
+<div class="container">
+
+  <!-- ══ SCREEN 0: WELCOME ══ -->
+  <div class="screen active" id="screen-0">
+    <div class="welcome-eyebrow">Contractor Onboarding — Painting</div>
+    <div class="welcome-title">Build your<br><em>estimate tool.</em></div>
+    <div class="welcome-body">Answer these questions once. We'll use your answers to build a custom pricing estimator that quotes jobs on your website automatically — day or night.</div>
+    <div class="welcome-steps">
+      <div class="welcome-step">
+        <div class="step-num">1</div>
+        Your business info and credentials
+        <span class="step-time">2 min</span>
+      </div>
+      <div class="welcome-step">
+        <div class="step-num">2</div>
+        How you price exterior and interior jobs
+        <span class="step-time">4 min</span>
+      </div>
+      <div class="welcome-step">
+        <div class="step-num">3</div>
+        Services, service area, and availability
+        <span class="step-time">3 min</span>
+      </div>
+      <div class="welcome-step">
+        <div class="step-num">4</div>
+        Payment terms and final details
+        <span class="step-time">1 min</span>
+      </div>
+    </div>
+    <button class="btn-start" onclick="goTo(1)">Begin Setup</button>
+  </div>
+
+  <!-- ══ SCREEN 1: BUSINESS INFO ══ -->
+  <div class="screen" id="screen-1">
+    <div class="section-tag">Section 1 of 9 — Business Info</div>
+    <div class="question">Tell us about your business.</div>
+    <div class="hint">This information appears on every estimate sent to your customers.</div>
+
+    <div class="field">
+      <label class="field-label">Business Name *</label>
+      <input class="field-input" type="text" id="bizName" name="business_name" placeholder="e.g. Smith Painting Co.">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Owner Name *</label>
+        <input class="field-input" type="text" id="ownerName" name="owner_name" placeholder="First Last">
+      </div>
+      <div class="field">
+        <label class="field-label">Phone *</label>
+        <input class="field-input" type="tel" id="phone" name="phone" placeholder="503-000-0000">
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">Business Email *</label>
+      <input class="field-input" type="email" id="email" name="email" placeholder="you@yourbusiness.com">
+    </div>
+    <div class="field">
+      <label class="field-label">Mailing Address</label>
+      <input class="field-input" type="text" id="address" name="mailing_address" placeholder="Street or PO Box, City, State, ZIP">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">CCB Number</label>
+        <input class="field-input" type="text" id="ccb" name="ccb_number" placeholder="CCB #">
+      </div>
+      <div class="field">
+        <label class="field-label">Years in Business</label>
+        <input class="field-input" type="number" id="years" name="years_in_business" placeholder="e.g. 8">
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">Website (if any)</label>
+      <input class="field-input" type="text" id="website" name="website" placeholder="yoursite.com">
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 2: CREDENTIALS ══ -->
+  <div class="screen" id="screen-2">
+    <div class="section-tag">Section 2 of 9 — Credentials</div>
+    <div class="question">Are you licensed, bonded, and insured?</div>
+    <div class="hint">Select everything that applies. This builds trust with homeowners on your estimate.</div>
+    <div class="multi-note">Select all that apply</div>
+    <div class="options" id="creds-opts">
+      <button type="button" class="opt multi" data-val="licensed" onclick="toggleMulti(this,'creds')">Licensed <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="bonded" onclick="toggleMulti(this,'creds')">Bonded <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="insured" onclick="toggleMulti(this,'creds')">General Liability Insured <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="workers_comp" onclick="toggleMulti(this,'creds')">Workers Comp (I have employees) <div class="check"></div></button>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 3: EXTERIOR PRICING ══ -->
+  <div class="screen" id="screen-3">
+    <div class="section-tag">Section 3 of 9 — Exterior Pricing</div>
+    <div class="question">How do you price exterior jobs?</div>
+    <div class="hint">Pick the method that describes how you quote most exterior work.</div>
+    <div class="options" id="extMethod-opts">
+      <button type="button" class="opt" data-val="sqft_living" onclick="selectOne(this,'extMethod'); showEl('extRateWrap')">By square foot of living space</button>
+      <button type="button" class="opt" data-val="sqft_surface" onclick="selectOne(this,'extMethod'); showEl('extRateWrap')">By actual paintable surface area</button>
+      <button type="button" class="opt" data-val="flat_bid" onclick="selectOne(this,'extMethod'); hideEl('extRateWrap')">Flat rate — I bid each job individually</button>
+      <button type="button" class="opt" data-val="hourly" onclick="selectOne(this,'extMethod'); hideEl('extRateWrap')">Hourly</button>
+      <button type="button" class="opt other-opt" data-val="other" onclick="selectOne(this,'extMethod'); showOther('extMethodOther'); hideEl('extRateWrap')">None of these — I'll explain</button>
+    </div>
+    <div class="other-wrap" id="extMethodOther">
+      <input class="field-input" type="text" name="ext_method_other" placeholder="How do you price exterior jobs?">
+    </div>
+
+    <div id="extRateWrap" style="display:none">
+      <div class="divider"></div>
+      <div class="sub-question">What's your base exterior rate?</div>
+      <div class="hint">Starting price before any complexity adjustments.</div>
+      <div class="field price-wrap">
+        <span class="price-prefix">$</span>
+        <input class="field-input" type="number" id="extRate" name="ext_rate_per_sqft" placeholder="0.00" step="0.01" min="0">
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-top:-8px; margin-bottom:6px">per square foot</div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Two-story homes — how do you handle them?</div>
+    <div class="options" id="twoStory-opts">
+      <button type="button" class="opt" data-val="included" onclick="selectOne(this,'twoStory'); hideOther('twoStoryExtra')">Factored into my base rate</button>
+      <button type="button" class="opt" data-val="flat_add" onclick="selectOne(this,'twoStory'); showOther('twoStoryExtra','How much do you add? (e.g. +$300)')">I add a flat fee</button>
+      <button type="button" class="opt" data-val="multiplier" onclick="selectOne(this,'twoStory'); showOther('twoStoryExtra','What multiplier? (e.g. 1.25x base rate)')">I use a multiplier</button>
+      <button type="button" class="opt" data-val="bid_each" onclick="selectOne(this,'twoStory'); hideOther('twoStoryExtra')">I bid each one individually</button>
+    </div>
+    <div class="other-wrap" id="twoStoryExtra">
+      <input class="field-input" type="text" name="two_story_upcharge" placeholder="">
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 4: INTERIOR PRICING ══ -->
+  <div class="screen" id="screen-4">
+    <div class="section-tag">Section 4 of 9 — Interior Pricing</div>
+    <div class="question">How do you price interior jobs?</div>
+    <div class="hint">Pick the method that describes most of your interior work.</div>
+    <div class="options" id="intMethod-opts">
+      <button type="button" class="opt" data-val="sqft" onclick="selectOne(this,'intMethod'); showIntRate('sqft')">By square foot of living space</button>
+      <button type="button" class="opt" data-val="per_room" onclick="selectOne(this,'intMethod'); showIntRate('room')">Per room — flat rate by room type</button>
+      <button type="button" class="opt" data-val="hourly" onclick="selectOne(this,'intMethod'); hideIntRate()">Hourly</button>
+      <button type="button" class="opt" data-val="custom_bid" onclick="selectOne(this,'intMethod'); hideIntRate()">Custom bid only</button>
+      <button type="button" class="opt other-opt" data-val="other" onclick="selectOne(this,'intMethod'); showOther('intMethodOther'); hideIntRate()">None of these — I'll explain</button>
+    </div>
+    <div class="other-wrap" id="intMethodOther">
+      <input class="field-input" type="text" name="int_method_other" placeholder="How do you price interior jobs?">
+    </div>
+
+    <div id="intRateSqft" style="display:none">
+      <div class="divider"></div>
+      <div class="sub-question">Base interior rate per sq ft?</div>
+      <div class="field price-wrap">
+        <span class="price-prefix">$</span>
+        <input class="field-input" type="number" name="int_rate_sqft" placeholder="0.00" step="0.01" min="0">
+      </div>
+    </div>
+
+    <div id="intRateRoom" style="display:none">
+      <div class="divider"></div>
+      <div class="sub-question">Starting rates by room type?</div>
+      <div class="hint">Base prices — we'll add adjustments for size and condition on top.</div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Bedroom</label>
+          <div class="price-wrap"><span class="price-prefix">$</span><input class="field-input" type="number" name="rate_bedroom" placeholder="0"></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Living Room</label>
+          <div class="price-wrap"><span class="price-prefix">$</span><input class="field-input" type="number" name="rate_living" placeholder="0"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Kitchen</label>
+          <div class="price-wrap"><span class="price-prefix">$</span><input class="field-input" type="number" name="rate_kitchen" placeholder="0"></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Bathroom</label>
+          <div class="price-wrap"><span class="price-prefix">$</span><input class="field-input" type="number" name="rate_bathroom" placeholder="0"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Hallway</label>
+          <div class="price-wrap"><span class="price-prefix">$</span><input class="field-input" type="number" name="rate_hallway" placeholder="0"></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Stairwell</label>
+          <div class="price-wrap"><span class="price-prefix">$</span><input class="field-input" type="number" name="rate_stairwell" placeholder="0"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Are ceilings included in your rate?</div>
+    <div class="options" id="ceiling-opts">
+      <button type="button" class="opt" data-val="included" onclick="selectOne(this,'ceiling'); hideOther('ceilingExtra')">Yes, included</button>
+      <button type="button" class="opt" data-val="addon_room" onclick="selectOne(this,'ceiling'); showOther('ceilingExtra','Add-on per room? (e.g. +$75/room)')">No — I add extra per room</button>
+      <button type="button" class="opt" data-val="addon_sqft" onclick="selectOne(this,'ceiling'); showOther('ceilingExtra','Rate per sq ft? (e.g. $0.50/sqft)')">No — separate sq ft rate</button>
+    </div>
+    <div class="other-wrap" id="ceilingExtra">
+      <input class="field-input" type="text" name="ceiling_addon" placeholder="">
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 5: SERVICES ══ -->
+  <div class="screen" id="screen-5">
+    <div class="section-tag">Section 5 of 9 — Services</div>
+    <div class="question">What services do you offer?</div>
+    <div class="hint">Select everything. This determines what appears in your estimate tool.</div>
+    <div class="multi-note">Select all that apply</div>
+    <div class="options" id="services-opts">
+      <button type="button" class="opt multi" data-val="ext_residential" onclick="toggleMulti(this,'services')">Exterior — Residential <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="int_residential" onclick="toggleMulti(this,'services')">Interior — Residential <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="commercial" onclick="toggleMulti(this,'services')">Commercial <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="cabinets" onclick="toggleMulti(this,'services')">Cabinet Painting <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="deck_stain" onclick="toggleMulti(this,'services')">Deck Staining / Painting <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="fence_stain" onclick="toggleMulti(this,'services')">Fence Staining / Painting <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="new_construction" onclick="toggleMulti(this,'services')">New Construction <div class="check"></div></button>
+      <button type="button" class="opt multi" data-val="power_wash" onclick="toggleMulti(this,'services')">Power Washing <div class="check"></div></button>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Anything you don't take on?</div>
+    <div class="hint">This filters out bad leads before they reach you.</div>
+    <div class="field">
+      <textarea class="field-input" name="exclusions" placeholder="e.g. No wallpaper removal, no popcorn ceiling removal, minimum job $500..."></textarea>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 6: PRICING DETAILS ══ -->
+  <div class="screen" id="screen-6">
+    <div class="section-tag">Section 6 of 9 — Pricing Details</div>
+    <div class="question">A few more pricing details.</div>
+    <div class="hint">These let the estimator handle real-world complexity accurately.</div>
+
+    <div class="sub-question">Do you charge extra for color changes?</div>
+    <div class="options" id="colorChange-opts">
+      <button type="button" class="opt" data-val="no" onclick="selectOne(this,'colorChange'); hideOther('colorChangeAmt')">No, it's included</button>
+      <button type="button" class="opt" data-val="yes" onclick="selectOne(this,'colorChange'); showOther('colorChangeAmt','How much extra? (e.g. +$150 flat or +10%)')">Yes, I charge extra</button>
+    </div>
+    <div class="other-wrap" id="colorChangeAmt">
+      <input class="field-input" type="text" name="color_change_upcharge" placeholder="">
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Is paint included in your quote?</div>
+    <div class="options" id="paintIncl-opts">
+      <button type="button" class="opt" data-val="included" onclick="selectOne(this,'paintIncl')">Yes, paint is included in my price</button>
+      <button type="button" class="opt" data-val="client_buys" onclick="selectOne(this,'paintIncl')">No, the client supplies their own paint</button>
+      <button type="button" class="opt" data-val="either" onclick="selectOne(this,'paintIncl')">Depends on the job</button>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Do you have a minimum job charge?</div>
+    <div class="options" id="minJob-opts">
+      <button type="button" class="opt" data-val="no" onclick="selectOne(this,'minJob'); hideOther('minJobAmt')">No minimum</button>
+      <button type="button" class="opt" data-val="yes" onclick="selectOne(this,'minJob'); showOther('minJobAmt','What is your minimum charge? (e.g. $400)')">Yes, I have a minimum</button>
+    </div>
+    <div class="other-wrap" id="minJobAmt">
+      <input class="field-input" type="text" name="minimum_job" placeholder="">
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">New construction vs. repaint — same rate?</div>
+    <div class="options" id="newConst-opts">
+      <button type="button" class="opt" data-val="same" onclick="selectOne(this,'newConst'); hideOther('newConstNote')">Same rate for both</button>
+      <button type="button" class="opt" data-val="different" onclick="selectOne(this,'newConst'); showOther('newConstNote','How does your rate differ for new construction?')">Different — I'll explain</button>
+      <button type="button" class="opt" data-val="no_new_const" onclick="selectOne(this,'newConst'); hideOther('newConstNote')">I don't do new construction</button>
+    </div>
+    <div class="other-wrap" id="newConstNote">
+      <input class="field-input" type="text" name="new_construction_note" placeholder="">
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 7: SERVICE AREA ══ -->
+  <div class="screen" id="screen-7">
+    <div class="section-tag">Section 7 of 9 — Service Area</div>
+    <div class="question">Where do you work?</div>
+    <div class="hint">Your service area appears on your website and helps filter incoming leads.</div>
+
+    <div class="field">
+      <label class="field-label">Primary City / Cities *</label>
+      <input class="field-input" type="text" id="primaryArea" name="primary_service_area" placeholder="e.g. Salem, Keizer, Dallas OR">
+    </div>
+
+    <div class="sub-question" style="margin-bottom:6px">How far will you travel?</div>
+    <div class="options" id="travel-opts">
+      <button type="button" class="opt" data-val="15" onclick="selectOne(this,'travel')">Within 15 miles</button>
+      <button type="button" class="opt" data-val="25" onclick="selectOne(this,'travel')">Within 25 miles</button>
+      <button type="button" class="opt" data-val="50" onclick="selectOne(this,'travel')">Within 50 miles</button>
+      <button type="button" class="opt other-opt" data-val="other" onclick="selectOne(this,'travel'); showOther('travelOther')">Other range</button>
+    </div>
+    <div class="other-wrap" id="travelOther">
+      <input class="field-input" type="text" name="travel_range_other" placeholder="Describe your travel range...">
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Does distance affect your pricing?</div>
+    <div class="options" id="travelFee-opts">
+      <button type="button" class="opt" data-val="no" onclick="selectOne(this,'travelFee'); hideOther('travelFeeAmt')">No, same rate everywhere</button>
+      <button type="button" class="opt" data-val="yes" onclick="selectOne(this,'travelFee'); showOther('travelFeeAmt','How do you charge for distance? (e.g. +$75 flat over 25 miles)')">Yes, I add a travel fee</button>
+    </div>
+    <div class="other-wrap" id="travelFeeAmt">
+      <input class="field-input" type="text" name="travel_fee" placeholder="">
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 8: AVAILABILITY ══ -->
+  <div class="screen" id="screen-8">
+    <div class="section-tag">Section 8 of 9 — Availability</div>
+    <div class="question">How do you work?</div>
+    <div class="hint">Helps us send the right leads at the right time.</div>
+
+    <div class="sub-question">Typical lead time for new jobs?</div>
+    <div class="options" id="leadTime-opts">
+      <button type="button" class="opt" data-val="1_2wk" onclick="selectOne(this,'leadTime')">1–2 weeks out</button>
+      <button type="button" class="opt" data-val="2_4wk" onclick="selectOne(this,'leadTime')">2–4 weeks out</button>
+      <button type="button" class="opt" data-val="4_6wk" onclick="selectOne(this,'leadTime')">4–6 weeks out</button>
+      <button type="button" class="opt" data-val="6wk_plus" onclick="selectOne(this,'leadTime')">6+ weeks out</button>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Busiest season?</div>
+    <div class="options" id="season-opts">
+      <button type="button" class="opt" data-val="spring_summer" onclick="selectOne(this,'season')">Spring and Summer</button>
+      <button type="button" class="opt" data-val="fall" onclick="selectOne(this,'season')">Fall</button>
+      <button type="button" class="opt" data-val="year_round" onclick="selectOne(this,'season')">Steady year-round</button>
+      <button type="button" class="opt other-opt" data-val="other" onclick="selectOne(this,'season'); showOther('seasonOther')">Other</button>
+    </div>
+    <div class="other-wrap" id="seasonOther">
+      <input class="field-input" type="text" name="season_other" placeholder="Describe your busy season...">
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">How do you prefer to receive leads?</div>
+    <div class="options" id="leadPref-opts">
+      <button type="button" class="opt" data-val="call" onclick="selectOne(this,'leadPref')">Phone call</button>
+      <button type="button" class="opt" data-val="text" onclick="selectOne(this,'leadPref')">Text message</button>
+      <button type="button" class="opt" data-val="email" onclick="selectOne(this,'leadPref')">Email</button>
+      <button type="button" class="opt" data-val="any" onclick="selectOne(this,'leadPref')">Any — I respond fast either way</button>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-question">Anything else we should know?</div>
+    <div class="hint">Unique pricing rules, job preferences, or anything the estimator should account for.</div>
+    <div class="field">
+      <textarea class="field-input" name="additional_notes" placeholder="Optional — any details that didn't fit above..."></textarea>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 9: DONE ══ -->
+  <div class="screen" id="screen-9">
+    <div class="done-rule"></div>
+    <div class="done-title">Setup Complete.</div>
+    <div class="done-body">We have everything we need to build your estimate tool. TradeLine Digital will follow up within one business day to confirm your setup and get your site live.</div>
+    <div class="summary-block" id="summaryBlock"></div>
+    <div class="contact-card">
+      <p>Questions? Contact <strong>TradeLine Digital</strong><br>
+      <a href="tel:8663982507">(866) 398-2507</a> &nbsp;·&nbsp; <a href="mailto:brian@tradelinedigital.com">brian@tradelinedigital.com</a></p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- STICKY NAV -->
+<div class="nav-outer" id="navOuter">
+  <div class="nav-inner">
+    <button class="nav-back" id="navBack" onclick="goBack()" style="display:none">&#8592;</button>
+    <button class="nav-next" id="navNext" onclick="goNext()">Continue</button>
+  </div>
+</div>
+
+<!-- HIDDEN FORM for Formspree submission -->
+<form id="formspreeForm" action="https://formspree.io/f/xjglvwvo" method="POST" class="hidden">
+  <input type="hidden" name="_subject" value="New Painting Contractor Onboarding">
+  <input type="hidden" name="_replyto" id="fs_email">
+  <!-- All data fields injected by JS on submit -->
+  <div id="fsFields"></div>
+</form>
+
+<script>
+  const TOTAL = 9;
+  let current = 0;
+  let answers = {};
+  let multiAnswers = {};
+
+  const sectionNames = [
+    'Getting Started','Business Info','Credentials',
+    'Exterior Pricing','Interior Pricing','Services',
+    'Pricing Details','Service Area','Availability','Complete'
+  ];
+
+  // ── NAVIGATION ──
+  function goTo(n) {
+    document.getElementById('screen-' + current).classList.remove('active');
+    current = n;
+    document.getElementById('screen-' + current).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateProgress();
+    updateNav();
+  }
+
+  function goNext() {
+    if (current === TOTAL - 1) {
+      submitAndFinish();
+    } else if (current < TOTAL) {
+      goTo(current + 1);
+    }
+  }
+
+  function goBack() {
+    if (current > 1) goTo(current - 1);
+  }
+
+  // ── PROGRESS ──
+  function updateProgress() {
+    const pct = current === 0 ? 0 : Math.round((current / TOTAL) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressSection').textContent = sectionNames[current] || '';
+    document.getElementById('progressCount').textContent =
+      current > 0 && current < TOTAL ? `${current} of ${TOTAL} sections` : '';
+  }
+
+  function updateNav() {
+    const navOuter = document.getElementById('navOuter');
+    const navBack  = document.getElementById('navBack');
+    const navNext  = document.getElementById('navNext');
+
+    navOuter.style.display = current === 0 ? 'none' : 'flex';
+    navBack.style.display  = current > 1 ? 'flex' : 'none';
+
+    if (current === TOTAL) {
+      navOuter.style.display = 'none';
+    } else {
+      navNext.textContent = current === TOTAL - 1 ? 'Submit' : 'Continue';
+      navNext.disabled = false;
+    }
+  }
+
+  // ── SELECTION ──
+  function selectOne(el, group) {
+    document.querySelectorAll('#' + group + '-opts .opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[group] = el.dataset.val;
+  }
+
+  function toggleMulti(el, group) {
+    el.classList.toggle('selected');
+    if (!multiAnswers[group]) multiAnswers[group] = [];
+    const v = el.dataset.val;
+    if (el.classList.contains('selected')) {
+      if (!multiAnswers[group].includes(v)) multiAnswers[group].push(v);
+    } else {
+      multiAnswers[group] = multiAnswers[group].filter(x => x !== v);
+    }
+  }
+
+  // ── SHOW/HIDE ──
+  function showEl(id)  { const el = document.getElementById(id); if (el) el.style.display = 'block'; }
+  function hideEl(id)  { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
+
+  function showOther(id, placeholder) {
+    const wrap = document.getElementById(id);
+    if (!wrap) return;
+    wrap.classList.add('visible');
+    if (placeholder) {
+      const inp = wrap.querySelector('input, textarea');
+      if (inp) { inp.placeholder = placeholder; inp.focus(); }
+    }
+  }
+
+  function hideOther(id) {
+    const wrap = document.getElementById(id);
+    if (wrap) wrap.classList.remove('visible');
+  }
+
+  function showIntRate(type) {
+    hideEl('intRateSqft');
+    hideEl('intRateRoom');
+    if (type === 'sqft') showEl('intRateSqft');
+    if (type === 'room') showEl('intRateRoom');
+  }
+
+  function hideIntRate() {
+    hideEl('intRateSqft');
+    hideEl('intRateRoom');
+  }
+
+  // ── SUBMIT ──
+  function submitAndFinish() {
+    const form = document.getElementById('formspreeForm');
+    const fsFields = document.getElementById('fsFields');
+    fsFields.innerHTML = '';
+
+    // Collect all named text/number inputs across all screens
+    document.querySelectorAll('.field-input').forEach(inp => {
+      if (inp.name && inp.value) {
+        const h = document.createElement('input');
+        h.type = 'hidden';
+        h.name = inp.name;
+        h.value = inp.value;
+        fsFields.appendChild(h);
+      }
+    });
+
+    // Single-select answers
+    Object.entries(answers).forEach(([key, val]) => {
+      const h = document.createElement('input');
+      h.type = 'hidden';
+      h.name = 'answer_' + key;
+      h.value = val;
+      fsFields.appendChild(h);
+    });
+
+    // Multi-select answers
+    Object.entries(multiAnswers).forEach(([key, vals]) => {
+      const h = document.createElement('input');
+      h.type = 'hidden';
+      h.name = 'multi_' + key;
+      h.value = vals.join(', ');
+      fsFields.appendChild(h);
+    });
+
+    // Set reply-to from email field
+    const emailVal = document.getElementById('email').value;
+    document.getElementById('fs_email').value = emailVal;
+
+    // Set Formspree redirect back to done screen
+    const nextInput = document.createElement('input');
+    nextInput.type = 'hidden';
+    nextInput.name = '_next';
+    nextInput.value = window.location.href.split('?')[0] + '?submitted=1';
+    fsFields.appendChild(nextInput);
+
+    // Build summary before navigating away
+    buildSummary();
+
+    // Standard form POST — works from any host including GitHub Pages
+    form.submit();
+  }
+
+  // Check if returning from Formspree redirect
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.search.includes('submitted=1')) {
+      goTo(TOTAL);
+      updateNav();
+    }
+  });
+
+  // ── SUMMARY ──
+  function buildSummary() {
+    const rows = [
+      { key: 'Business',        val: document.getElementById('bizName').value || '—' },
+      { key: 'Owner',           val: document.getElementById('ownerName').value || '—' },
+      { key: 'Phone',           val: document.getElementById('phone').value || '—' },
+      { key: 'Email',           val: document.getElementById('email').value || '—' },
+      { key: 'CCB #',           val: document.getElementById('ccb').value || '—' },
+      { key: 'Credentials',     val: (multiAnswers['creds'] || []).join(', ') || '—' },
+      { key: 'Exterior Method', val: (answers['extMethod'] || '—').replace(/_/g,' ') },
+      { key: 'Interior Method', val: (answers['intMethod'] || '—').replace(/_/g,' ') },
+      { key: 'Services',        val: (multiAnswers['services'] || []).join(', ').replace(/_/g,' ') || '—' },
+      { key: 'Service Area',    val: document.getElementById('primaryArea').value || '—' },
+      { key: 'Travel Range',    val: answers['travel'] ? answers['travel'] + ' miles' : '—' },
+      { key: 'Lead Preference', val: (answers['leadPref'] || '—') },
+    ];
+
+    document.getElementById('summaryBlock').innerHTML = rows.map(r => `
+      <div class="summary-row">
+        <span class="summary-key">${r.key}</span>
+        <span class="summary-val">${r.val}</span>
+      </div>
+    `).join('');
+  }
+
+  // Init
+  updateProgress();
+  updateNav();
+</script>
+</body>
+</html>
