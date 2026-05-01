@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TradeLine">
+<title>TradeLine — Job Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & ROOT ── */
+  :root {
+    --navy:      #0B1628;
+    --navy-mid:  #112240;
+    --navy-card: #ffffff;
+    --gold:      #B8922A;
+    --gold-dim:  rgba(184,146,42,0.08);
+    --gold-rule: rgba(184,146,42,0.25);
+    --white:     #1c2b3a;
+    --slate:     #5a7080;
+    --border:    #dce4ed;
+    --success:   #1e9e52;
+    --danger:    #c0392b;
+    --radius:    10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: #f4f7fa;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .app-header {
+    background: var(--navy-mid);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 18px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+
+  .app-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .app-logo span { color: var(--gold); }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contractor-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── VIEWS ── */
+  .view { display: none; padding: 20px 18px 100px; }
+  .view.active { display: block; }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -2px 12px rgba(11,22,40,0.08);
+    display: flex;
+    z-index: 200;
+  }
+
+  .nav-tab {
+    flex: 1;
+    padding: 10px 0 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+    background: none;
+    color: var(--slate);
+  }
+
+  .nav-tab.active { color: var(--gold); }
+
+  .nav-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .nav-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION TAG ── */
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold-rule);
+  }
+
+  /* ── PAGE TITLE ── */
+  .page-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  /* ── STEP INDICATOR ── */
+  .steps {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 28px;
+  }
+
+  .step-dot {
+    height: 3px;
+    flex: 1;
+    background: var(--border);
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+
+  .step-dot.done { background: var(--gold); opacity: 0.5; }
+  .step-dot.active { background: var(--gold); }
+
+  /* ── JOB TYPE GRID ── */
+  .job-type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .job-type-btn {
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 20px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.2;
+    box-shadow: 0 2px 8px rgba(11,22,40,0.06);
+  }
+
+  .job-type-icon {
+    font-size: 24px;
+    display: block;
+    filter: grayscale(1) brightness(1.5);
+  }
+
+  .job-type-btn:hover {
+    border-color: var(--gold-rule);
+  }
+
+  .job-type-btn.selected {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .job-type-btn.selected .job-type-icon {
+    filter: none;
+  }
+
+  /* ── SIZE INPUT ── */
+  .size-input-wrap {
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    margin-bottom: 16px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(11,22,40,0.06);
+  }
+
+  .size-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .size-number-input {
+    background: transparent;
+    border: none;
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    letter-spacing: -0.02em;
+    -webkit-appearance: none;
+  }
+
+  .size-number-input::placeholder {
+    color: rgba(184,146,42,0.2);
+  }
+
+  .size-unit {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--slate);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── COMPLEXITY CARDS ── */
+  .complexity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .complexity-item {
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 0 2px 8px rgba(11,22,40,0.05);
+  }
+
+  .complexity-item:hover { border-color: var(--gold-rule); }
+
+  .complexity-item.selected {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+  }
+
+  .complexity-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    border: 1.5px solid var(--slate);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .complexity-item.selected .complexity-check {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .complexity-item.selected .complexity-check::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--navy);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translateY(-1px);
+    display: block;
+  }
+
+  .complexity-info { flex: 1; }
+
+  .complexity-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+
+  .complexity-desc {
+    font-size: 12px;
+    color: var(--slate);
+  }
+
+  .complexity-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .complexity-item.selected .complexity-price {
+    color: var(--gold);
+  }
+
+  /* ── TOTAL SCREEN ── */
+  .total-display {
+    background: var(--navy);
+    border: 1.5px solid var(--navy-mid);
+    border-radius: var(--radius);
+    padding: 28px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(11,22,40,0.15);
+  }
+
+  .total-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .total-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+
+  .total-amount {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+    transition: all 0.2s;
+  }
+
+  .total-deposit {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 8px;
+  }
+
+  .total-deposit span {
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+
+  /* Adjust buttons */
+  .adjust-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .adj-btn {
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 8px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(11,22,40,0.06);
+  }
+
+  .adj-btn:hover { border-color: var(--gold-rule); }
+  .adj-btn.minus:hover { border-color: rgba(231,76,60,0.4); color: var(--danger); }
+  .adj-btn.plus:hover  { border-color: rgba(46,204,113,0.4); color: var(--success); }
+
+  .adj-amount {
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 3px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Breakdown */
+  .breakdown {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(11,22,40,0.06);
+  }
+
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-key { color: var(--slate); }
+  .breakdown-val { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--white); }
+  .breakdown-val.gold { color: var(--gold); }
+
+  .field-input {
+    width: 100%;
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 13px 14px;
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    box-shadow: 0 2px 6px rgba(11,22,40,0.05);
+  }
+
+  .field-input:focus {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(11,22,40,0.06);
+  }
+
+  .field-input::placeholder { color: var(--slate); opacity: 0.5; }
+
+  textarea.field-input {
+    resize: none;
+    min-height: 88px;
+    line-height: 1.5;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* ── ESTIMATE PREVIEW ── */
+  .estimate-doc {
+    background: #ffffff;
+    color: #1a1a2e;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .doc-header {
+    background: var(--navy);
+    padding: 20px;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .doc-biz-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .doc-biz-info {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .doc-body { padding: 20px; }
+
+  .doc-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8fa3b8;
+    margin-bottom: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .doc-value {
+    font-size: 14px;
+    color: #1a1a2e;
+    font-weight: 500;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .doc-divider {
+    height: 1px;
+    background: #e8eef4;
+    margin: 14px 0;
+  }
+
+  .doc-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .doc-total-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+  }
+
+  .doc-total-amount {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  .doc-deposit-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #8fa3b8;
+  }
+
+  .doc-policy {
+    background: #f5f7fa;
+    border-left: 3px solid var(--gold);
+    padding: 10px 12px;
+    margin-top: 14px;
+    font-size: 11px;
+    color: #5a6f85;
+    line-height: 1.5;
+  }
+
+  .doc-footer {
+    padding: 12px 20px;
+    background: #f5f7fa;
+    border-top: 1px solid #e8eef4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doc-ccb {
+    font-size: 10px;
+    color: #8fa3b8;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .doc-powered {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c0cdd8;
+  }
+
+  .doc-powered span { color: var(--gold); }
+
+  /* ── JOB LIST ── */
+  .job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .job-card {
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.15s;
+    box-shadow: 0 2px 10px rgba(11,22,40,0.06);
+  }
+
+  .job-card:hover { border-color: var(--gold-rule); }
+
+  .job-card-header {
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .job-customer {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+
+  .job-type-tag {
+    font-size: 11px;
+    color: var(--slate);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .job-amount {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .job-status-row {
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .status-pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .pill-done {
+    background: rgba(46,204,113,0.1);
+    border: 1px solid rgba(46,204,113,0.3);
+    color: var(--success);
+  }
+
+  .pill-pending {
+    background: rgba(107,132,158,0.1);
+    border: 1px solid rgba(107,132,158,0.2);
+    color: var(--slate);
+  }
+
+  .pill-action {
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-rule);
+    color: var(--gold);
+    cursor: pointer;
+  }
+
+  .pill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .job-card-actions {
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-btn {
+    flex: 1;
+    background: #f4f7fa;
+    border: 1px solid var(--border);
+    color: var(--slate);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+
+  .action-btn:hover { border-color: var(--gold-rule); color: var(--gold); }
+  .action-btn.primary-action {
+    background: var(--gold-dim);
+    border-color: var(--gold-rule);
+    color: var(--gold);
+  }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--navy);
+    color: #ffffff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 17px;
+    border: none;
+    border-bottom: 3px solid var(--gold);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 16px rgba(11,22,40,0.15);
+  }
+
+  .btn-primary:hover {
+    background: var(--navy-mid);
+    box-shadow: 0 6px 24px rgba(11,22,40,0.2);
+  }
+
+  .btn-secondary {
+    width: 100%;
+    background: #ffffff;
+    color: var(--slate);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+
+  /* ── STICKY BOTTOM ── */
+  .sticky-bottom {
+    position: fixed;
+    bottom: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 36px);
+    max-width: 444px;
+    z-index: 100;
+    background: linear-gradient(to top, #f4f7fa 60%, transparent);
+    padding: 16px 0 8px;
+  }
+
+  /* ── NEW JOB FAB ── */
+  .fab {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: var(--gold);
+    border: none;
+    border-radius: 50%;
+    color: var(--navy);
+    font-size: 26px;
+    font-weight: 300;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    z-index: 150;
+    line-height: 1;
+  }
+
+  .fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 28px rgba(201,168,76,0.5);
+  }
+
+  /* ── STEP NAV ── */
+  .step-nav {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .step-back {
+    width: 52px;
+    height: 52px;
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    color: var(--slate);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    font-family: 'Barlow', sans-serif;
+    box-shadow: 0 2px 6px rgba(11,22,40,0.06);
+  }
+
+  .step-back:hover { border-color: var(--navy); color: var(--navy); }
+
+  .step-next {
+    flex: 1;
+    height: 52px;
+    background: var(--navy);
+    color: #ffffff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    border-bottom: 3px solid var(--gold);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 0 4px 16px rgba(11,22,40,0.15);
+  }
+
+  .step-next:hover { background: var(--navy-mid); }
+  .step-next:disabled { background: var(--border); color: var(--slate); border-bottom-color: transparent; cursor: not-allowed; box-shadow: none; }
+
+  /* ── SUCCESS SCREEN ── */
+  .success-wrap {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .success-mark {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(46,204,113,0.1);
+    border: 2px solid var(--success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 30px;
+  }
+
+  .success-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .success-body {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .sent-to-list {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 24px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(11,22,40,0.06);
+  }
+
+  .sent-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .sent-row:last-child { border-bottom: none; }
+
+  .sent-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    flex-shrink: 0;
+  }
+
+  .sent-label { color: var(--slate); flex: 1; }
+  .sent-val { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--white); }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .empty-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--slate);
+    margin-bottom: 8px;
+  }
+
+  .empty-body {
+    font-size: 13px;
+    color: var(--slate);
+    opacity: 0.6;
+    margin-bottom: 24px;
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    top: 66px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy-mid);
+    border: 1px solid var(--gold-rule);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 10px 20px;
+    border-radius: 30px;
+    z-index: 300;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+
+  .toast.show { opacity: 1; }
+
+  /* ── MISC ── */
+  .gold { color: var(--gold); }
+  .slate { color: var(--slate); }
+  .mono { font-family: 'DM Mono', monospace; }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     CONTRACTOR CONFIG
+     Update this per contractor
+══════════════════════════════ -->
+<script>
+const CONTRACTOR = {
+  name:    "Hillier Construction LLC",
+  owner:   "Byron Hillier",
+  phone:   "503-854-5921",
+  email:   "byron@hillierconstruction.com",
+  ccb:     "CCB #214738",
+  address: "Salem, OR",
+
+  pricing: {
+    exterior_rate:    2.25,   // per sqft
+    interior_rate:    1.50,   // per sqft
+    cabinet_base:     1200,   // flat starting rate
+    deck_rate:        3.50,   // per sqft
+    fence_rate:       2.00,   // per linear ft
+
+    upcharges: {
+      two_story:     350,
+      heavy_prep:    275,
+      color_change:  150,
+      new_const:     200,
+      power_wash:    175,
+    },
+
+    minimum: 400,
+    deposit_pct: 0.50,
+  },
+
+  tradeline_email: "brian@tradelinedigital.com",
+  formspree_id:    "xjglvwvo",
+};
+</script>
+
+<!-- HEADER -->
+<div class="app-header">
+  <div class="app-logo">TradeLine<span>Digital</span></div>
+  <div class="header-right">
+    <div class="contractor-tag" id="contractorTag"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════
+     VIEW: JOB LIST
+══════════════════════════════ -->
+<div class="view active" id="view-jobs">
+  <div class="section-tag">Active Jobs</div>
+  <div class="page-title" id="jobListTitle">Your Jobs</div>
+  <div class="page-subtitle" id="jobListSub">Loading...</div>
+
+  <div class="job-list" id="jobList"></div>
+</div>
+
+<!-- ══════════════════════════════
+     VIEW: NEW JOB FLOW
+══════════════════════════════ -->
+<div class="view" id="view-new">
+
+  <!-- STEP 1: JOB TYPE -->
+  <div id="step-1">
+    <div class="section-tag">Step 1 of 5 — Job Type</div>
+    <div class="page-title">What's the job?</div>
+    <div class="page-subtitle">Select everything that applies to this estimate.</div>
+    <div class="steps">
+      <div class="step-dot active"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+    </div>
+
+    <div class="job-type-grid">
+      <button class="job-type-btn" data-type="exterior" onclick="toggleJobType(this)">
+        <span class="job-type-icon">🏠</span>
+        Exterior
+      </button>
+      <button class="job-type-btn" data-type="interior" onclick="toggleJobType(this)">
+        <span class="job-type-icon">🛋️</span>
+        Interior
+      </button>
+      <button class="job-type-btn" data-type="cabinets" onclick="toggleJobType(this)">
+        <span class="job-type-icon">🗄️</span>
+        Cabinets
+      </button>
+      <button class="job-type-btn" data-type="deck" onclick="toggleJobType(this)">
+        <span class="job-type-icon">🌿</span>
+        Deck
+      </button>
+      <button class="job-type-btn" data-type="fence" onclick="toggleJobType(this)">
+        <span class="job-type-icon">🚧</span>
+        Fence
+      </button>
+      <button class="job-type-btn" data-type="other" onclick="toggleJobType(this)">
+        <span class="job-type-icon">✏️</span>
+        Other
+      </button>
+    </div>
+
+    <div class="step-nav">
+      <button class="step-next" id="step1Next" onclick="goStep(2)" disabled>Next — Size</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: SIZE -->
+  <div id="step-2" style="display:none">
+    <div class="section-tag">Step 2 of 5 — Size</div>
+    <div class="page-title" id="sizeTitle">Square footage?</div>
+    <div class="page-subtitle" id="sizeSubtitle">Enter the approximate area for this job.</div>
+    <div class="steps">
+      <div class="step-dot done"></div>
+      <div class="step-dot active"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+    </div>
+
+    <div class="size-input-wrap">
+      <span class="size-label" id="sizeLabel">Square Feet</span>
+      <input class="size-number-input" type="number" id="sizeInput" inputmode="numeric" placeholder="0" oninput="updateTotal()">
+      <div class="size-unit" id="sizeUnitLabel">sq ft</div>
+    </div>
+
+    <div id="sizeNoteWrap" style="display:none; margin-bottom:16px;">
+      <div class="field">
+        <label class="field-label">Description</label>
+        <textarea class="field-input" id="sizeNote" placeholder="Describe the scope..." rows="3"></textarea>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="step-back" onclick="goStep(1)">←</button>
+      <button class="step-next" onclick="goStep(3)">Next — Complexity</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: COMPLEXITY -->
+  <div id="step-3" style="display:none">
+    <div class="section-tag">Step 3 of 5 — Complexity</div>
+    <div class="page-title">Any upcharges?</div>
+    <div class="page-subtitle">Select everything that applies. Price updates live.</div>
+    <div class="steps">
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot active"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+    </div>
+
+    <div class="complexity-list" id="complexityList"></div>
+
+    <div class="step-nav">
+      <button class="step-back" onclick="goStep(2)">←</button>
+      <button class="step-next" onclick="goStep(4)">Next — Total</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: TOTAL & ADJUST -->
+  <div id="step-4" style="display:none">
+    <div class="section-tag">Step 4 of 5 — Your Number</div>
+    <div class="page-title">The estimate.</div>
+    <div class="page-subtitle">Adjust up or down to win the deal.</div>
+    <div class="steps">
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot active"></div>
+      <div class="step-dot"></div>
+    </div>
+
+    <div class="total-display">
+      <div class="total-label">Estimated Total</div>
+      <div class="total-amount" id="totalDisplay">$0</div>
+      <div class="total-deposit">50% deposit due at signing: <span id="depositDisplay">$0</span></div>
+    </div>
+
+    <div class="adjust-row">
+      <button class="adj-btn minus" onclick="adjustTotal(-500)">
+        − $500
+        <div class="adj-amount">remove</div>
+      </button>
+      <button class="adj-btn minus" onclick="adjustTotal(-100)">
+        − $100
+        <div class="adj-amount">remove</div>
+      </button>
+      <button class="adj-btn plus" onclick="adjustTotal(100)">
+        + $100
+        <div class="adj-amount">add</div>
+      </button>
+      <button class="adj-btn plus" onclick="adjustTotal(500)">
+        + $500
+        <div class="adj-amount">add</div>
+      </button>
+    </div>
+
+    <div class="breakdown" id="breakdownTable"></div>
+
+    <div class="step-nav">
+      <button class="step-back" onclick="goStep(3)">←</button>
+      <button class="step-next" onclick="goStep(5)">Next — Customer Info</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: CUSTOMER INFO -->
+  <div id="step-5" style="display:none">
+    <div class="section-tag">Step 5 of 5 — Customer</div>
+    <div class="page-title">Who's the customer?</div>
+    <div class="page-subtitle">This goes on the estimate and the payment request.</div>
+    <div class="steps">
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot active"></div>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Customer Name *</label>
+      <input class="field-input" type="text" id="custName" placeholder="First Last" oninput="checkStep5()">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Phone *</label>
+        <input class="field-input" type="tel" id="custPhone" placeholder="503-000-0000" oninput="checkStep5()">
+      </div>
+      <div class="field">
+        <label class="field-label">Email *</label>
+        <input class="field-input" type="email" id="custEmail" placeholder="email@mail.com" oninput="checkStep5()">
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">Job Site Address</label>
+      <input class="field-input" type="text" id="custAddress" placeholder="123 Main St, Salem OR">
+    </div>
+    <div class="field">
+      <label class="field-label">Scope of Work</label>
+      <textarea class="field-input" id="scopeNote" placeholder="Describe exactly what will be done. This appears on the signed estimate." rows="4"></textarea>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Est. Start Date</label>
+        <input class="field-input" type="date" id="startDate">
+      </div>
+      <div class="field">
+        <label class="field-label">Bid Expires</label>
+        <input class="field-input" type="date" id="bidExpiry" readonly>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="step-back" onclick="goStep(4)">←</button>
+      <button class="step-next" id="step5Next" onclick="showPreview()" disabled>Preview Estimate</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: PREVIEW -->
+  <div id="step-6" style="display:none">
+    <div class="section-tag">Preview — Estimate</div>
+    <div class="page-title">Review before sending.</div>
+    <div class="page-subtitle">This is exactly what the customer receives.</div>
+
+    <div class="estimate-doc" id="estimatePreview"></div>
+
+    <button class="btn-primary" onclick="sendEstimate()">Send Estimate Now</button>
+    <button class="btn-secondary" onclick="goStep(5)">Back — Edit</button>
+  </div>
+
+  <!-- STEP 7: SUCCESS -->
+  <div id="step-7" style="display:none">
+    <div class="success-wrap">
+      <div class="success-mark">✓</div>
+      <div class="success-title">Estimate Sent.</div>
+      <div class="success-body">The estimate has been delivered. The customer can sign and pay their deposit directly from the link.</div>
+
+      <div class="sent-to-list" id="sentToList"></div>
+
+      <button class="btn-primary" onclick="startNewJob()">New Estimate</button>
+      <button class="btn-secondary" onclick="showView('jobs')">Back to Jobs</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAB: New Job (visible on jobs view) -->
+<button class="fab" id="fabBtn" onclick="startNewJob()">+</button>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="nav-tab active" id="tab-jobs" onclick="showView('jobs')">
+    <div class="nav-icon">≡</div>
+    <div class="nav-label">Jobs</div>
+  </button>
+  <button class="nav-tab" id="tab-new" onclick="startNewJob()">
+    <div class="nav-icon">+</div>
+    <div class="nav-label">New Job</div>
+  </button>
+  <button class="nav-tab" id="tab-settings" onclick="showView('settings')">
+    <div class="nav-icon">⚙</div>
+    <div class="nav-label">Settings</div>
+  </button>
+</div>
+
+<!-- VIEW: SETTINGS -->
+<div class="view" id="view-settings">
+  <div class="section-tag">Account</div>
+  <div class="page-title" id="settingsBizName"></div>
+  <div class="page-subtitle" id="settingsOwner"></div>
+
+  <div class="breakdown" style="margin-top:8px">
+    <div class="breakdown-row">
+      <span class="breakdown-key">Phone</span>
+      <span class="breakdown-val mono" id="sPh"></span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-key">Email</span>
+      <span class="breakdown-val mono" id="sEm"></span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-key">CCB</span>
+      <span class="breakdown-val mono" id="sCCB"></span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-key">Exterior Rate</span>
+      <span class="breakdown-val gold" id="sExt"></span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-key">Interior Rate</span>
+      <span class="breakdown-val gold" id="sInt"></span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-key">Minimum Job</span>
+      <span class="breakdown-val gold" id="sMin"></span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-key">Deposit</span>
+      <span class="breakdown-val gold">50% at signing</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 24px; padding: 14px 16px; background: var(--navy-card); border: 1px solid var(--border); border-radius: var(--radius);">
+    <div style="font-size:11px; color: var(--slate); line-height:1.6;">To update your rates or business info, contact TradeLine Digital.</div>
+    <div style="margin-top:8px; font-family:'DM Mono',monospace; font-size:12px; color: var(--gold);">brian@tradelinedigital.com</div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+let state = {
+  jobTypes:    [],
+  sqft:        0,
+  upcharges:   [],
+  baseTotal:   0,
+  finalTotal:  0,
+  adjustment:  0,
+};
+
+let jobs = JSON.parse(localStorage.getItem('tl_jobs') || '[]');
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('contractorTag').textContent = CONTRACTOR.owner.split(' ')[0];
+
+  // Set bid expiry to 30 days from today
+  const exp = new Date();
+  exp.setDate(exp.getDate() + 30);
+  const expStr = exp.toISOString().split('T')[0];
+  document.getElementById('bidExpiry').value = expStr;
+
+  // Settings view
+  document.getElementById('settingsBizName').textContent = CONTRACTOR.name;
+  document.getElementById('settingsOwner').textContent = CONTRACTOR.owner + ' — ' + CONTRACTOR.address;
+  document.getElementById('sPh').textContent  = CONTRACTOR.phone;
+  document.getElementById('sEm').textContent  = CONTRACTOR.email;
+  document.getElementById('sCCB').textContent = CONTRACTOR.ccb;
+  document.getElementById('sExt').textContent = '$' + CONTRACTOR.pricing.exterior_rate + '/sqft';
+  document.getElementById('sInt').textContent = '$' + CONTRACTOR.pricing.interior_rate + '/sqft';
+  document.getElementById('sMin').textContent = '$' + CONTRACTOR.pricing.minimum;
+
+  buildComplexityList();
+  renderJobList();
+  updateJobListHeader();
+});
+
+// ══════════════════════════════════════
+// VIEW MANAGEMENT
+// ══════════════════════════════════════
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+
+  const fab = document.getElementById('fabBtn');
+  fab.style.display = name === 'jobs' ? 'flex' : 'none';
+
+  if (name === 'jobs') renderJobList();
+}
+
+function startNewJob() {
+  // Reset state
+  state = { jobTypes:[], sqft:0, upcharges:[], baseTotal:0, finalTotal:0, adjustment:0 };
+
+  // Reset UI
+  document.querySelectorAll('.job-type-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('sizeInput').value = '';
+  document.querySelectorAll('.complexity-item').forEach(i => i.classList.remove('selected'));
+  document.getElementById('step1Next').disabled = true;
+  document.getElementById('custName').value   = '';
+  document.getElementById('custPhone').value  = '';
+  document.getElementById('custEmail').value  = '';
+  document.getElementById('custAddress').value = '';
+  document.getElementById('scopeNote').value  = '';
+
+  document.querySelectorAll('[id^="step-"]').forEach(s => s.style.display = 'none');
+  document.getElementById('step-1').style.display = 'block';
+
+  showView('new');
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════
+// STEP NAVIGATION
+// ══════════════════════════════════════
+function goStep(n) {
+  document.querySelectorAll('[id^="step-"]').forEach(s => s.style.display = 'none');
+  document.getElementById('step-' + n).style.display = 'block';
+  window.scrollTo(0,0);
+
+  if (n === 2) updateSizeLabels();
+  if (n === 4) refreshTotal();
+}
+
+// ══════════════════════════════════════
+// STEP 1 — JOB TYPE
+// ══════════════════════════════════════
+function toggleJobType(btn) {
+  btn.classList.toggle('selected');
+  const t = btn.dataset.type;
+  if (btn.classList.contains('selected')) {
+    if (!state.jobTypes.includes(t)) state.jobTypes.push(t);
+  } else {
+    state.jobTypes = state.jobTypes.filter(x => x !== t);
+  }
+  document.getElementById('step1Next').disabled = state.jobTypes.length === 0;
+  updateTotal();
+}
+
+// ══════════════════════════════════════
+// STEP 2 — SIZE LABELS
+// ══════════════════════════════════════
+function updateSizeLabels() {
+  const types = state.jobTypes;
+  if (types.includes('fence')) {
+    document.getElementById('sizeLabel').textContent    = 'Linear Feet';
+    document.getElementById('sizeUnitLabel').textContent = 'linear ft';
+    document.getElementById('sizeTitle').textContent    = 'How many linear feet?';
+  } else if (types.includes('other')) {
+    document.getElementById('sizeLabel').textContent    = 'Description';
+    document.getElementById('sizeUnitLabel').textContent = '';
+    document.getElementById('sizeNoteWrap').style.display = 'block';
+  } else {
+    document.getElementById('sizeLabel').textContent    = 'Square Feet';
+    document.getElementById('sizeUnitLabel').textContent = 'sq ft';
+    document.getElementById('sizeTitle').textContent    = 'Square footage?';
+    document.getElementById('sizeNoteWrap').style.display = 'none';
+  }
+}
+
+// ══════════════════════════════════════
+// STEP 3 — COMPLEXITY
+// ══════════════════════════════════════
+function buildComplexityList() {
+  const items = [
+    { key: 'two_story',    name: 'Two-Story Home',       desc: 'Additional ladder/lift work required' },
+    { key: 'heavy_prep',   name: 'Heavy Prep / Poor Condition', desc: 'Significant surface prep needed' },
+    { key: 'color_change', name: 'Color Change',         desc: 'Dark to light or light to dark' },
+    { key: 'new_const',    name: 'New Construction',     desc: 'Raw drywall or new surfaces' },
+    { key: 'power_wash',   name: 'Power Washing',        desc: 'Included in this estimate' },
+  ];
+
+  const list = document.getElementById('complexityList');
+  list.innerHTML = items.map(item => {
+    const amt = CONTRACTOR.pricing.upcharges[item.key] || 0;
+    return `
+      <div class="complexity-item" data-key="${item.key}" onclick="toggleComplexity(this, '${item.key}')">
+        <div class="complexity-check"></div>
+        <div class="complexity-info">
+          <div class="complexity-name">${item.name}</div>
+          <div class="complexity-desc">${item.desc}</div>
+        </div>
+        <div class="complexity-price">+$${amt.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleComplexity(el, key) {
+  el.classList.toggle('selected');
+  if (el.classList.contains('selected')) {
+    if (!state.upcharges.includes(key)) state.upcharges.push(key);
+  } else {
+    state.upcharges = state.upcharges.filter(k => k !== key);
+  }
+  updateTotal();
+}
+
+// ══════════════════════════════════════
+// TOTAL CALCULATION
+// ══════════════════════════════════════
+function updateTotal() {
+  const sqft   = parseFloat(document.getElementById('sizeInput').value) || 0;
+  const types  = state.jobTypes;
+  const p      = CONTRACTOR.pricing;
+  let base     = 0;
+
+  if (types.includes('exterior'))  base += sqft * p.exterior_rate;
+  if (types.includes('interior'))  base += sqft * p.interior_rate;
+  if (types.includes('cabinets'))  base += p.cabinet_base;
+  if (types.includes('deck'))      base += sqft * p.deck_rate;
+  if (types.includes('fence'))     base += sqft * p.fence_rate;
+
+  // Apply upcharges
+  state.upcharges.forEach(key => {
+    base += (p.upcharges[key] || 0);
+  });
+
+  // Minimum
+  base = Math.max(base, p.minimum);
+
+  state.sqft      = sqft;
+  state.baseTotal = base;
+  state.finalTotal = base + state.adjustment;
+}
+
+function refreshTotal() {
+  updateTotal();
+  const total   = Math.max(0, state.finalTotal);
+  const deposit = total * CONTRACTOR.pricing.deposit_pct;
+
+  document.getElementById('totalDisplay').textContent  = '$' + Math.round(total).toLocaleString();
+  document.getElementById('depositDisplay').textContent = '$' + Math.round(deposit).toLocaleString();
+
+  // Breakdown
+  const p = CONTRACTOR.pricing;
+  const rows = [];
+
+  if (state.jobTypes.includes('exterior') && state.sqft)
+    rows.push({ k: 'Exterior (' + state.sqft + ' sqft)', v: '$' + Math.round(state.sqft * p.exterior_rate).toLocaleString() });
+  if (state.jobTypes.includes('interior') && state.sqft)
+    rows.push({ k: 'Interior (' + state.sqft + ' sqft)', v: '$' + Math.round(state.sqft * p.interior_rate).toLocaleString() });
+  if (state.jobTypes.includes('cabinets'))
+    rows.push({ k: 'Cabinets (base)', v: '$' + p.cabinet_base.toLocaleString() });
+  if (state.jobTypes.includes('deck') && state.sqft)
+    rows.push({ k: 'Deck (' + state.sqft + ' sqft)', v: '$' + Math.round(state.sqft * p.deck_rate).toLocaleString() });
+  if (state.jobTypes.includes('fence') && state.sqft)
+    rows.push({ k: 'Fence (' + state.sqft + ' ln ft)', v: '$' + Math.round(state.sqft * p.fence_rate).toLocaleString() });
+
+  state.upcharges.forEach(key => {
+    const labels = {
+      two_story:'Two-Story', heavy_prep:'Heavy Prep',
+      color_change:'Color Change', new_const:'New Construction', power_wash:'Power Wash'
+    };
+    rows.push({ k: labels[key] || key, v: '+$' + (p.upcharges[key]||0).toLocaleString() });
+  });
+
+  if (state.adjustment !== 0)
+    rows.push({ k: 'Manual Adjustment', v: (state.adjustment > 0 ? '+' : '') + '$' + state.adjustment.toLocaleString() });
+
+  rows.push({ k: 'TOTAL', v: '$' + Math.round(total).toLocaleString(), gold: true });
+  rows.push({ k: '50% Deposit Due', v: '$' + Math.round(deposit).toLocaleString(), gold: true });
+
+  document.getElementById('breakdownTable').innerHTML = rows.map(r => `
+    <div class="breakdown-row">
+      <span class="breakdown-key">${r.k}</span>
+      <span class="breakdown-val ${r.gold ? 'gold' : ''}">${r.v}</span>
+    </div>
+  `).join('');
+}
+
+function adjustTotal(amount) {
+  state.adjustment += amount;
+  state.finalTotal = state.baseTotal + state.adjustment;
+  refreshTotal();
+}
+
+// ══════════════════════════════════════
+// STEP 5 — CUSTOMER VALIDATION
+// ══════════════════════════════════════
+function checkStep5() {
+  const ok = document.getElementById('custName').value.trim() &&
+             document.getElementById('custPhone').value.trim() &&
+             document.getElementById('custEmail').value.trim();
+  document.getElementById('step5Next').disabled = !ok;
+}
+
+// ══════════════════════════════════════
+// STEP 6 — PREVIEW
+// ══════════════════════════════════════
+function showPreview() {
+  const total   = Math.max(0, state.finalTotal);
+  const deposit = Math.round(total * CONTRACTOR.pricing.deposit_pct);
+  const balance = Math.round(total - deposit);
+  const name    = document.getElementById('custName').value;
+  const addr    = document.getElementById('custAddress').value || 'Address not provided';
+  const scope   = document.getElementById('scopeNote').value || 'Painting services as discussed.';
+  const expiry  = document.getElementById('bidExpiry').value;
+  const types   = state.jobTypes.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ');
+
+  document.getElementById('estimatePreview').innerHTML = `
+    <div class="doc-header">
+      <div class="doc-biz-name">${CONTRACTOR.name}</div>
+      <div class="doc-biz-info">
+        ${CONTRACTOR.address} &nbsp;·&nbsp; ${CONTRACTOR.phone}<br>
+        ${CONTRACTOR.email}<br>
+        ${CONTRACTOR.ccb} &nbsp;·&nbsp; Licensed · Bonded · Insured
+      </div>
+    </div>
+    <div class="doc-body">
+      <div class="doc-label">Estimate Prepared For</div>
+      <div class="doc-value">${name}<br><span style="font-size:13px;color:#8fa3b8">${addr}</span></div>
+
+      <div class="doc-label">Job Type</div>
+      <div class="doc-value">${types}</div>
+
+      <div class="doc-label">Scope of Work</div>
+      <div class="doc-value">${scope}</div>
+
+      <div class="doc-label">Bid Valid Until</div>
+      <div class="doc-value">${expiry}</div>
+
+      <div class="doc-divider"></div>
+
+      <div class="doc-total-row">
+        <span class="doc-total-label">Estimate Total</span>
+        <span class="doc-total-amount">$${Math.round(total).toLocaleString()}</span>
+      </div>
+      <div class="doc-deposit-row">
+        <span>50% Deposit Due at Signing</span>
+        <span>$${deposit.toLocaleString()}</span>
+      </div>
+      <div class="doc-deposit-row">
+        <span>Balance Due at Completion</span>
+        <span>$${balance.toLocaleString()}</span>
+      </div>
+
+      <div class="doc-policy">
+        <strong>Cancellation Policy:</strong> The 50% deposit is non-refundable if the client cancels after signing this estimate. If the contractor is unable to complete the work, the deposit will be refunded in full. All cancellations must be submitted in writing.
+      </div>
+
+      <div class="doc-policy" style="margin-top:8px">
+        Additional charges may apply if unforeseen conditions are discovered during work. Client will be notified and must approve any changes before additional work proceeds.
+      </div>
+    </div>
+    <div class="doc-footer">
+      <span class="doc-ccb">${CONTRACTOR.ccb}</span>
+      <span class="doc-powered">Powered by <span>TradeLine Digital</span></span>
+    </div>
+  `;
+
+  goStep(6);
+}
+
+// ══════════════════════════════════════
+// SEND ESTIMATE
+// ══════════════════════════════════════
+function sendEstimate() {
+  const total   = Math.max(0, state.finalTotal);
+  const deposit = Math.round(total * CONTRACTOR.pricing.deposit_pct);
+  const name    = document.getElementById('custName').value;
+  const phone   = document.getElementById('custPhone').value;
+  const email   = document.getElementById('custEmail').value;
+  const addr    = document.getElementById('custAddress').value;
+  const scope   = document.getElementById('scopeNote').value;
+  const types   = state.jobTypes.join(', ');
+  const expiry  = document.getElementById('bidExpiry').value;
+  const jobId   = 'JOB-' + Date.now();
+
+  // Save to local job list
+  const job = {
+    id:          jobId,
+    customer:    name,
+    phone:       phone,
+    email:       email,
+    address:     addr,
+    types:       types,
+    scope:       scope,
+    total:       Math.round(total),
+    deposit:     deposit,
+    adjustment:  state.adjustment,
+    upcharges:   state.upcharges,
+    expiry:      expiry,
+    date:        new Date().toLocaleDateString(),
+    status: {
+      signed:        false,
+      deposit_paid:  false,
+      final_due:     false,
+      completed:     false,
+    }
+  };
+
+  jobs.unshift(job);
+  localStorage.setItem('tl_jobs', JSON.stringify(jobs));
+
+  // Send to Formspree
+  const payload = {
+    _subject:          `New Job Estimate — ${name} — $${Math.round(total).toLocaleString()}`,
+    job_id:            jobId,
+    contractor:        CONTRACTOR.name,
+    contractor_email:  CONTRACTOR.email,
+    customer_name:     name,
+    customer_phone:    phone,
+    customer_email:    email,
+    job_address:       addr,
+    job_types:         types,
+    scope_of_work:     scope,
+    estimate_total:    '$' + Math.round(total).toLocaleString(),
+    deposit_due:       '$' + deposit.toLocaleString(),
+    bid_expiry:        expiry,
+    tradeline_notify:  CONTRACTOR.tradeline_email,
+    _replyto:          email,
+  };
+
+  fetch(`https://formspree.io/f/${CONTRACTOR.formspree_id}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(() => {
+    // Saved locally regardless
+  });
+
+  // Show sent screen
+  document.getElementById('sentToList').innerHTML = [
+    { label: 'Customer', val: email },
+    { label: 'Contractor', val: CONTRACTOR.email },
+    { label: 'TradeLine Digital', val: CONTRACTOR.tradeline_email },
+  ].map(r => `
+    <div class="sent-row">
+      <div class="sent-dot"></div>
+      <div class="sent-label">${r.label}</div>
+      <div class="sent-val">${r.val}</div>
+    </div>
+  `).join('');
+
+  goStep(7);
+}
+
+// ══════════════════════════════════════
+// JOB LIST
+// ══════════════════════════════════════
+function renderJobList() {
+  const list = document.getElementById('jobList');
+
+  if (jobs.length === 0) {
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-title">No jobs yet.</div>
+        <div class="empty-body">Tap + to create your first estimate.</div>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = jobs.map((job, idx) => {
+    const s = job.status;
+    const pills = [
+      { label: 'Signed',       done: s.signed,       action: !s.signed       ? () => markStatus(idx,'signed')       : null },
+      { label: 'Deposit Paid', done: s.deposit_paid,  action: !s.deposit_paid  ? () => markStatus(idx,'deposit_paid')  : null },
+      { label: 'Final Due',    done: s.final_due,     action: !s.final_due     ? () => markStatus(idx,'final_due')     : null },
+      { label: 'Completed',    done: s.completed,     action: !s.completed     ? () => markStatus(idx,'completed')     : null },
+    ];
+
+    return `
+      <div class="job-card">
+        <div class="job-card-header">
+          <div>
+            <div class="job-customer">${job.customer}</div>
+            <div class="job-type-tag">${job.types} &nbsp;·&nbsp; ${job.date}</div>
+          </div>
+          <div class="job-amount">$${job.total.toLocaleString()}</div>
+        </div>
+        <div class="job-status-row">
+          ${pills.map(p => `
+            <div class="status-pill ${p.done ? 'pill-done' : (p.label === getNextAction(job) ? 'pill-action' : 'pill-pending')}"
+                 onclick="${p.done ? '' : `markStatus(${idx},'${p.label.toLowerCase().replace(' ','_')}')`}">
+              <div class="pill-dot"></div>
+              ${p.label}
+            </div>
+          `).join('')}
+        </div>
+        <div class="job-card-actions">
+          <button class="action-btn" onclick="resendEstimate(${idx})">Resend</button>
+          <button class="action-btn" onclick="changeOrder(${idx})">Change Order</button>
+          ${!job.status.completed && job.status.deposit_paid
+            ? `<button class="action-btn primary-action" onclick="requestFinal(${idx})">Request Final</button>`
+            : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function getNextAction(job) {
+  const s = job.status;
+  if (!s.signed)       return 'Signed';
+  if (!s.deposit_paid) return 'Deposit Paid';
+  if (!s.final_due)    return 'Final Due';
+  if (!s.completed)    return 'Completed';
+  return '';
+}
+
+function markStatus(idx, key) {
+  const statusMap = {
+    'signed':       'signed',
+    'deposit_paid': 'deposit_paid',
+    'deposit paid': 'deposit_paid',
+    'final_due':    'final_due',
+    'final due':    'final_due',
+    'completed':    'completed',
+  };
+  const k = statusMap[key.toLowerCase()] || key;
+  jobs[idx].status[k] = true;
+  localStorage.setItem('tl_jobs', JSON.stringify(jobs));
+  renderJobList();
+  showToast('Status updated');
+}
+
+function resendEstimate(idx) {
+  showToast('Estimate resent to ' + jobs[idx].email);
+}
+
+function changeOrder(idx) {
+  showToast('Change order — coming soon');
+}
+
+function requestFinal(idx) {
+  const job = jobs[idx];
+  jobs[idx].status.final_due = true;
+  localStorage.setItem('tl_jobs', JSON.stringify(jobs));
+  renderJobList();
+  showToast('Final payment request sent to ' + job.customer);
+}
+
+function updateJobListHeader() {
+  const active = jobs.filter(j => !j.status.completed).length;
+  document.getElementById('jobListTitle').textContent = CONTRACTOR.owner.split(' ')[0] + "'s Jobs";
+  document.getElementById('jobListSub').textContent =
+    jobs.length === 0
+      ? 'No estimates yet. Tap + to get started.'
+      : `${active} active · ${jobs.length} total`;
+}
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>
