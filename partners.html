@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0D1B3E">
+<title>TradeLine Digital — Partner Brief</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #0D1B3E;
+  --navy-deep: #0a1530;
+  --navy-mid: #132448;
+  --gold: #C9952A;
+  --gold-light: #e0aa3a;
+  --gold-deep: #a87a1f;
+  --white: #ffffff;
+  --off-white: #faf8f4;
+  --paper: #f4f1ea;
+  --line: rgba(255,255,255,0.1);
+  --line-light: rgba(255,255,255,0.06);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter Tight', -apple-system, sans-serif;
+  font-weight: 400;
+  background: var(--navy);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+/* SLIDE BASE */
+.slide {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: 56px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-num {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
+  z-index: 10;
+}
+
+.slide-num span { color: var(--gold); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.scroll-hint::after { content: '↓'; font-size: 14px; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, 0); }
+  50% { opacity: 0.8; transform: translate(-50%, 4px); }
+}
+
+/* ============ SLIDE 1 — HOOK ============ */
+.slide-1 {
+  background: var(--navy);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.slide-1::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,149,42,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 50% 90%, rgba(201,149,42,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.brand-mark {
+  width: 88px;
+  height: 88px;
+  background: var(--gold);
+  color: var(--navy);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Newsreader', serif;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: -0.04em;
+  margin-bottom: 36px;
+  box-shadow: 0 20px 60px rgba(201,149,42,0.25);
+  position: relative;
+  z-index: 2;
+}
+.slide-1 h1 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(40px, 11vw, 56px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+.slide-1 .tagline {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 36;
+  font-style: italic;
+  font-size: clamp(18px, 5vw, 22px);
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--gold);
+  max-width: 320px;
+  position: relative;
+  z-index: 2;
+}
+.slide-1 .tagline-sub {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.6);
+  max-width: 280px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ SLIDE 2 — HOW IT WORKS ============ */
+.slide-2 {
+  background: var(--off-white);
+  color: var(--navy);
+  justify-content: flex-start;
+  padding-top: 80px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 16px;
+}
+.eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--gold-deep);
+}
+.slide-2 h2 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 72;
+  font-size: clamp(32px, 9vw, 44px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-bottom: 36px;
+}
+.slide-2 h2 .italic {
+  font-style: italic;
+  color: var(--gold-deep);
+}
+.tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+.track {
+  background: var(--white);
+  border: 1px solid #e5e1d8;
+  border-radius: 10px;
+  padding: 24px 22px;
+  position: relative;
+}
+.track-tag {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 10px;
+}
+.track h3 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 60;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+}
+.track h3 .italic { font-style: italic; color: var(--gold-deep); font-weight: 400; }
+.track p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: #4a4a4a;
+}
+
+/* ============ SLIDE 3 — WHAT'S BUILT ============ */
+.slide-3 {
+  background: var(--navy);
+  justify-content: flex-start;
+  padding-top: 80px;
+}
+.slide-3 .eyebrow { color: var(--gold); }
+.slide-3 .eyebrow::before { background: var(--gold); }
+.slide-3 h2 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 72;
+  font-size: clamp(32px, 9vw, 44px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+.slide-3 h2 .italic { font-style: italic; color: var(--gold); }
+
+.case-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+.case-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 22px 20px;
+  position: relative;
+}
+.case-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gold);
+  border-radius: 10px 0 0 10px;
+}
+.case-tag {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.case-card h3 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 60;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+}
+.case-sub {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold-light);
+  margin-bottom: 14px;
+}
+.case-card p {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 14px;
+}
+.case-stats {
+  display: flex;
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.case-stat {
+  flex: 1;
+}
+.case-stat-num {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 72;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.case-stat-num .small { font-size: 14px; color: rgba(255,255,255,0.5); }
+.case-stat-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.3;
+}
+
+/* ============ SLIDE 4 — WHAT'S IN IT FOR YOU ============ */
+.slide-4 {
+  background: var(--off-white);
+  color: var(--navy);
+  justify-content: flex-start;
+  padding-top: 80px;
+}
+.slide-4 h2 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 96;
+  font-size: clamp(38px, 11vw, 52px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.slide-4 h2 .italic { font-style: italic; color: var(--gold-deep); }
+.slide-4 .lead {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 24;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #4a4a4a;
+  margin-bottom: 28px;
+  max-width: 320px;
+}
+.slide-4 .lead strong {
+  color: var(--navy);
+  font-weight: 500;
+}
+.benefits {
+  background: var(--white);
+  border: 1px solid #e5e1d8;
+  border-radius: 10px;
+  padding: 8px 24px;
+}
+.benefit {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0ede5;
+  align-items: flex-start;
+}
+.benefit:last-child { border-bottom: none; }
+.benefit-num {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold-deep);
+  flex-shrink: 0;
+  padding-top: 1px;
+  min-width: 18px;
+}
+.benefit-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--navy);
+}
+.benefit-text strong { font-weight: 600; }
+
+.bottom-line {
+  margin-top: 24px;
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 24;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--gold-deep);
+  text-align: center;
+  padding: 16px 20px;
+  background: rgba(201,149,42,0.06);
+  border-radius: 8px;
+  border-left: 3px solid var(--gold);
+}
+
+/* ============ SLIDE 5 — THE ASK ============ */
+.slide-5 {
+  background: var(--navy);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.slide-5::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,149,42,0.16) 0%, transparent 60%);
+  pointer-events: none;
+}
+.ask-eyebrow {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
+}
+.ask-eyebrow::before, .ask-eyebrow::after {
+  content: '— ';
+}
+.slide-5 h2 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(28px, 8vw, 38px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 12px;
+  max-width: 320px;
+  position: relative;
+  z-index: 2;
+}
+.slide-5 .quote-line {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  color: var(--gold);
+}
+.slide-5 .punch {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(36px, 11vw, 46px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-top: 8px;
+  margin-bottom: 32px;
+  max-width: 320px;
+  position: relative;
+  z-index: 2;
+}
+.slide-5 .punch .italic { font-style: italic; color: var(--gold); font-weight: 400; }
+.slide-5 .reciprocal {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 24;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+  max-width: 280px;
+  position: relative;
+  z-index: 2;
+}
+.contact {
+  position: relative;
+  z-index: 2;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  width: 100%;
+  max-width: 280px;
+}
+.contact-name {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 36;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.contact-detail {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 4px;
+}
+.contact-detail a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* RESPONSIVE — DESKTOP */
+@media (min-width: 768px) {
+  .slide { padding: 80px 60px; }
+  .slide-1 h1 { font-size: 80px; }
+  .slide-1 .tagline { font-size: 28px; max-width: 480px; }
+  .slide-1 .tagline-sub { font-size: 17px; max-width: 420px; }
+  .brand-mark { width: 110px; height: 110px; font-size: 44px; }
+  .slide-2 h2, .slide-3 h2 { font-size: 56px; max-width: 640px; }
+  .tracks { flex-direction: row; max-width: 800px; gap: 24px; }
+  .track { flex: 1; padding: 36px 32px; }
+  .track h3 { font-size: 28px; }
+  .track p { font-size: 16px; }
+  .case-cards { flex-direction: row; max-width: 880px; gap: 20px; }
+  .case-card { flex: 1; padding: 32px 28px; }
+  .case-card h3 { font-size: 28px; }
+  .case-card p { font-size: 14px; }
+  .slide-4 h2 { font-size: 64px; max-width: 720px; }
+  .slide-4 .lead { font-size: 19px; max-width: 560px; }
+  .benefits { max-width: 600px; padding: 12px 32px; }
+  .benefit-text { font-size: 16px; }
+  .bottom-line { max-width: 600px; font-size: 18px; padding: 20px 28px; }
+  .slide-5 h2 { font-size: 44px; max-width: 600px; }
+  .slide-5 .punch { font-size: 60px; max-width: 600px; }
+  .slide-5 .reciprocal { font-size: 19px; max-width: 480px; }
+  .contact { max-width: 400px; }
+  .contact-name { font-size: 22px; }
+  .contact-detail { font-size: 15px; }
+}
+
+/* DOT NAVIGATION — small visual cue showing progress */
+.nav-dots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+  pointer-events: none;
+}
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+}
+.nav-dot.dark { background: rgba(13,27,62,0.3); }
+
+@media (max-width: 380px) {
+  .slide { padding: 48px 24px; }
+  .nav-dots { right: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== SLIDE 1: HOOK ========== -->
+<section class="slide slide-1">
+  <div class="slide-num"><span>01</span> · 05</div>
+  <div class="brand-mark">TLD</div>
+  <h1>TradeLine Digital</h1>
+  <p class="tagline">Performance websites for contractors.</p>
+  <p class="tagline-sub">We only get paid when they work.</p>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ========== SLIDE 2: HOW IT WORKS ========== -->
+<section class="slide slide-2">
+  <div class="slide-num"><span>02</span> · 05</div>
+  <div class="eyebrow">How It Works</div>
+  <h2>Two ways<br>to work <span class="italic">with us.</span></h2>
+  <div class="tracks">
+    <div class="track">
+      <div class="track-tag">Track 01 · Performance</div>
+      <h3>We <span class="italic">build it.</span><br>You pay when it works.</h3>
+      <p>We invest in the website, Google Business Profile, call tracking, and local SEO at our cost. Nothing upfront. We share in the upside on jobs the site brings in. If it doesn't produce, they owe nothing.</p>
+    </div>
+    <div class="track">
+      <div class="track-tag">Track 02 · Audit + Build</div>
+      <h3>$495 <span class="italic">audit.</span><br>Fixed-price quote.</h3>
+      <p>Deep audit on their existing site — technical, AI search, local SEO, conversion gaps. Plain-English report and a fixed-price quote to fix it. They decide what to do next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 3: WHAT'S BUILT ========== -->
+<section class="slide slide-3">
+  <div class="slide-num"><span>03</span> · 05</div>
+  <div class="eyebrow">Already Live</div>
+  <h2>This isn't<br><span class="italic">hypothetical.</span></h2>
+  <div class="case-cards">
+    <div class="case-card">
+      <div class="case-tag">Salem · General Contractor</div>
+      <h3>Hillier Construction</h3>
+      <div class="case-sub">Painting · Excavation · General Contracting</div>
+      <p>Word-of-mouth business with no online presence. Built a 6-page site with embedded estimators, call tracking, and AI search optimization.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-num">$0</div>
+          <div class="case-stat-label">Upfront cost</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-num">14<span class="small">d</span></div>
+          <div class="case-stat-label">Zero to live</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-num">6</div>
+          <div class="case-stat-label">Pages built</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Salem · Hardwood Flooring</div>
+      <h3>Regal Hardwood</h3>
+      <div class="case-sub">Third-generation craftsmen</div>
+      <p>The design and copy benchmark every TradeLine client site is measured against. Embedded estimator removes friction at the moment of decision.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-num">A+</div>
+          <div class="case-stat-label">Design benchmark</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-num">3<span class="small">rd</span></div>
+          <div class="case-stat-label">Generation business</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 4: WHAT'S IN IT FOR YOU ========== -->
+<section class="slide slide-4">
+  <div class="slide-num"><span>04</span> · 05</div>
+  <div class="eyebrow">For You</div>
+  <h2>What's in it<br>for <span class="italic">you.</span></h2>
+  <p class="lead">Every contractor I take on becomes a <strong>banking client looking for a home.</strong></p>
+  <div class="benefits">
+    <div class="benefit">
+      <span class="benefit-num">i.</span>
+      <span class="benefit-text">Business checking and credit cards</span>
+    </div>
+    <div class="benefit">
+      <span class="benefit-num">ii.</span>
+      <span class="benefit-text">Equipment loans, work trucks, expansion financing</span>
+    </div>
+    <div class="benefit">
+      <span class="benefit-num">iii.</span>
+      <span class="benefit-text">Lines of credit for cash flow</span>
+    </div>
+    <div class="benefit">
+      <span class="benefit-num">iv.</span>
+      <span class="benefit-text">SBA loans and business credit</span>
+    </div>
+  </div>
+  <div class="bottom-line">
+    You refer them to me for marketing — they come back to you for banking. Your book grows alongside mine.
+  </div>
+</section>
+
+<!-- ========== SLIDE 5: THE ASK ========== -->
+<section class="slide slide-5">
+  <div class="slide-num"><span>05</span> · 05</div>
+  <div class="ask-eyebrow">The Ask</div>
+  <h2>When one of your clients says <span class="quote-line">"I need more business"</span>—</h2>
+  <p class="punch">send them <span class="italic">my way.</span></p>
+  <p class="reciprocal">Their banking comes back to you.</p>
+  <div class="contact">
+    <div class="contact-name">Brian Cross</div>
+    <div class="contact-detail"><a href="mailto:brian@tradelinedigital.com">brian@tradelinedigital.com</a></div>
+    <div class="contact-detail"><a href="tel:8663982507">(866) 398-2507</a></div>
+    <div class="contact-detail" style="margin-top: 12px;"><a href="https://tradelinedigital.com">tradelinedigital.com</a></div>
+  </div>
+</section>
+
+</body>
+</html>
