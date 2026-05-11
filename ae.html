@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0D1B3E">
+<title>Account Executive — TradeLine Digital</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #0D1B3E;
+  --navy-deep: #0a1530;
+  --navy-mid: #132448;
+  --gold: #C9952A;
+  --gold-light: #e0aa3a;
+  --gold-deep: #a87a1f;
+  --white: #ffffff;
+  --off-white: #faf8f4;
+  --paper: #f4f1ea;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-mute: #7a7a7a;
+  --line: #e5e1d8;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter Tight', -apple-system, sans-serif;
+  font-weight: 400;
+  background: var(--navy);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.slide {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: 56px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-num {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  z-index: 10;
+}
+.slide-num.dark-num { color: rgba(255,255,255,0.3); }
+.slide-num.light-num { color: rgba(13,27,62,0.3); }
+.slide-num span { color: var(--gold); }
+.slide-num.light-num span { color: var(--gold-deep); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.scroll-hint::after { content: '↓'; font-size: 14px; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, 0); }
+  50% { opacity: 0.8; transform: translate(-50%, 4px); }
+}
+
+/* SHARED — EYEBROWS */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.eyebrow::before { content: ''; width: 18px; height: 1px; background: currentColor; }
+.eyebrow.gold { color: var(--gold); }
+.eyebrow.gold-deep { color: var(--gold-deep); }
+
+/* ============ SLIDE 1 — TITLE ============ */
+.slide-1 {
+  background: var(--navy);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.slide-1::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,149,42,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 50% 90%, rgba(201,149,42,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.brand-mark {
+  width: 88px; height: 88px;
+  background: var(--gold); color: var(--navy);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Newsreader', serif;
+  font-weight: 700; font-size: 36px;
+  letter-spacing: -0.04em;
+  margin-bottom: 36px;
+  box-shadow: 0 20px 60px rgba(201,149,42,0.25);
+  position: relative; z-index: 2;
+}
+.slide-1 .role-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  position: relative; z-index: 2;
+}
+.slide-1 h1 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(40px, 11vw, 56px);
+  font-weight: 400; line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 28px;
+  position: relative; z-index: 2;
+}
+.slide-1 h1 .italic { font-style: italic; color: var(--gold); }
+.slide-1 .tagline {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 36;
+  font-size: clamp(17px, 4.5vw, 20px);
+  font-weight: 300; line-height: 1.4;
+  color: rgba(255,255,255,0.7);
+  max-width: 340px;
+  position: relative; z-index: 2;
+}
+.slide-1 .tagline strong {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ============ LIGHT SLIDE BASE ============ */
+.slide-light {
+  background: var(--off-white);
+  color: var(--navy);
+  justify-content: flex-start;
+  padding-top: 76px;
+}
+.slide-dark {
+  background: var(--navy);
+  color: var(--white);
+  justify-content: flex-start;
+  padding-top: 76px;
+}
+
+.slide-light h2, .slide-dark h2 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 72;
+  font-size: clamp(32px, 9vw, 44px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+}
+.slide-light h2 { color: var(--navy); }
+.slide-dark h2 { color: var(--white); }
+.slide-light h2 .italic { font-style: italic; color: var(--gold-deep); }
+.slide-dark h2 .italic { font-style: italic; color: var(--gold); }
+
+.body-text {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.slide-light .body-text { color: var(--ink-soft); }
+.slide-dark .body-text { color: rgba(255,255,255,0.7); }
+.body-text strong { font-weight: 500; }
+.slide-light .body-text strong { color: var(--navy); }
+.slide-dark .body-text strong { color: var(--white); }
+
+/* ============ SLIDE 2 — THE BUSINESS ============ */
+.biz-points {
+  display: flex; flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+  padding-bottom: 40px;
+}
+.biz-point {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.biz-point-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 6px;
+}
+.biz-point p {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 24;
+  font-size: 16px; font-weight: 400;
+  line-height: 1.4; color: var(--navy);
+}
+.biz-point p .italic { font-style: italic; color: var(--gold-deep); }
+
+/* ============ SLIDE 3 — THE ROLE ============ */
+.role-cols {
+  display: flex; flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+  padding-bottom: 40px;
+}
+.role-col {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 22px 20px;
+}
+.role-col.no { border-left: 3px solid rgba(255,255,255,0.3); }
+.role-col.yes { border-left: 3px solid var(--gold); }
+.role-col-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.role-col.yes .role-col-label { color: var(--gold); }
+.role-col.no .role-col-label { color: rgba(255,255,255,0.4); }
+.role-col ul { list-style: none; }
+.role-col li {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.55; color: rgba(255,255,255,0.75);
+  padding: 5px 0;
+}
+.role-col li::before { content: '— '; color: var(--gold); margin-right: 4px; }
+.role-col.no li::before { content: '✕ '; color: rgba(255,255,255,0.3); }
+.role-col.no li { color: rgba(255,255,255,0.5); text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.15); }
+
+/* ============ SLIDE 4 — COMP SNAPSHOT ============ */
+.tiers {
+  display: flex; flex-direction: column;
+  gap: 14px; margin-top: 20px;
+}
+.tier {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 22px;
+  position: relative;
+}
+.tier.tier-2 {
+  background: var(--navy);
+  color: var(--white);
+}
+.tier-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 8px;
+}
+.tier.tier-2 .tier-label { color: var(--gold); }
+.tier-name {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 36;
+  font-size: 22px; font-weight: 500;
+  color: var(--navy); margin-bottom: 4px;
+  letter-spacing: -0.015em;
+}
+.tier.tier-2 .tier-name { color: var(--white); }
+.tier-range {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 14px; color: var(--ink-mute);
+  margin-bottom: 18px;
+}
+.tier.tier-2 .tier-range { color: rgba(255,255,255,0.5); }
+.tier-pay-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+.tier.tier-2 .tier-pay-row { border-top-color: rgba(255,255,255,0.1); }
+.tier-pay-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px; font-weight: 400;
+  color: var(--ink-soft);
+}
+.tier.tier-2 .tier-pay-label { color: rgba(255,255,255,0.6); }
+.tier-pay-amt {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 36;
+  font-size: 22px; font-weight: 500;
+  color: var(--gold-deep);
+  letter-spacing: -0.015em;
+}
+.tier.tier-2 .tier-pay-amt { color: var(--gold); }
+.comp-bonus {
+  margin-top: 18px;
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 14px; color: var(--gold-deep);
+  text-align: center;
+  padding: 14px 16px;
+  background: rgba(201,149,42,0.08);
+  border-radius: 6px;
+  border-left: 3px solid var(--gold);
+}
+.comp-bonus strong {
+  font-style: normal; font-weight: 600;
+  color: var(--navy);
+}
+
+/* ============ INCOME SCENARIO SLIDES (5-8) ============ */
+.slide-income {
+  background: var(--navy);
+  color: var(--white);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 28px;
+}
+.slide-income::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,149,42,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.income-eyebrow {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
+  position: relative; z-index: 2;
+}
+.income-pace {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 36;
+  font-style: italic; font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 8px;
+  position: relative; z-index: 2;
+}
+.income-volume {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 60;
+  font-size: 22px; font-weight: 400;
+  color: var(--white); margin-bottom: 32px;
+  letter-spacing: -0.015em;
+  position: relative; z-index: 2;
+}
+.income-big {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(64px, 18vw, 96px);
+  font-weight: 500; line-height: 0.95;
+  color: var(--gold); letter-spacing: -0.04em;
+  margin-bottom: 8px;
+  position: relative; z-index: 2;
+}
+.income-big-sub {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 14px; color: rgba(255,255,255,0.5);
+  margin-bottom: 36px;
+  position: relative; z-index: 2;
+}
+.income-breakdown {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 18px 22px;
+  width: 100%;
+  max-width: 360px;
+  position: relative; z-index: 2;
+}
+.breakdown-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 8px 0;
+  font-size: 13px;
+}
+.breakdown-row + .breakdown-row { border-top: 1px solid rgba(255,255,255,0.06); }
+.breakdown-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  text-align: left;
+}
+.breakdown-amt {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 24;
+  font-weight: 500; color: var(--gold);
+  font-size: 15px;
+}
+
+/* ============ SLIDE 9 — WHY THIS WORKS ============ */
+.why-grid {
+  display: flex; flex-direction: column;
+  gap: 12px; margin-top: auto;
+  padding-bottom: 40px;
+}
+.why-item {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 18px 20px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.why-num {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 18px; color: var(--gold-deep);
+  flex-shrink: 0; line-height: 1.3; min-width: 22px;
+}
+.why-text {
+  font-size: 14px; font-weight: 400;
+  line-height: 1.5; color: var(--ink-soft);
+}
+.why-text strong {
+  color: var(--navy); font-weight: 600;
+  display: block; margin-bottom: 2px;
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 24;
+  font-size: 16px;
+}
+
+/* ============ SLIDE 10 — WORKFLOW ============ */
+.workflow {
+  margin-top: auto;
+  padding-bottom: 40px;
+  display: flex; flex-direction: column;
+  gap: 0;
+}
+.flow-step {
+  display: flex; gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.flow-step:last-child { border-bottom: none; }
+.flow-num {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 36;
+  font-size: 24px; font-weight: 500;
+  color: var(--gold-deep);
+  flex-shrink: 0; min-width: 36px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.flow-text strong {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 24;
+  font-size: 16px; font-weight: 500;
+  color: var(--navy);
+  display: block; margin-bottom: 2px;
+}
+.flow-text span {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  display: block;
+}
+
+/* ============ SLIDE 11 — THE ASK ============ */
+.slide-12 {
+  background: var(--navy);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.slide-12::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,149,42,0.16) 0%, transparent 60%);
+  pointer-events: none;
+}
+.ask-eyebrow {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 32px;
+  position: relative; z-index: 2;
+}
+.ask-eyebrow::before, .ask-eyebrow::after { content: '— '; }
+.slide-12 h2 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(36px, 11vw, 46px);
+  font-weight: 400; line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 20px; max-width: 340px;
+  position: relative; z-index: 2;
+}
+.slide-12 h2 .italic { font-style: italic; color: var(--gold); font-weight: 400; }
+.slide-12 .ask-sub {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 16px; color: rgba(255,255,255,0.65);
+  margin-bottom: 48px; max-width: 320px;
+  line-height: 1.5;
+  position: relative; z-index: 2;
+}
+.commit-list {
+  position: relative; z-index: 2;
+  text-align: left;
+  width: 100%; max-width: 320px;
+  margin: 0 auto;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.commit-item {
+  display: flex; gap: 12px;
+  padding: 8px 0;
+  font-size: 14px; color: rgba(255,255,255,0.7);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.commit-item::before {
+  content: '✓'; color: var(--gold);
+  font-weight: 700; flex-shrink: 0;
+}
+
+/* RESPONSIVE — DESKTOP */
+@media (min-width: 768px) {
+  .slide { padding: 80px 60px; }
+  .slide-1 h1 { font-size: 76px; }
+  .slide-1 .tagline { font-size: 24px; max-width: 520px; }
+  .brand-mark { width: 110px; height: 110px; font-size: 44px; }
+  .slide-light h2, .slide-dark h2 { font-size: 56px; max-width: 640px; }
+  .body-text { font-size: 17px; }
+
+  .biz-points { flex-direction: row; gap: 16px; max-width: 900px; }
+  .biz-point { flex: 1; padding: 24px 22px; }
+  .biz-point p { font-size: 17px; }
+
+  .role-cols { flex-direction: row; gap: 18px; max-width: 880px; }
+  .role-col { flex: 1; padding: 28px 26px; }
+  .role-col li { font-size: 15px; }
+
+  .tiers { flex-direction: row; gap: 18px; max-width: 720px; }
+  .tier { flex: 1; padding: 32px 28px; }
+  .tier-name { font-size: 26px; }
+  .tier-pay-amt { font-size: 26px; }
+  .comp-bonus { max-width: 720px; font-size: 16px; }
+
+  .income-eyebrow { font-size: 13px; }
+  .income-pace { font-size: 22px; }
+  .income-volume { font-size: 28px; }
+  .income-big { font-size: 144px; }
+  .income-breakdown { max-width: 460px; padding: 22px 28px; }
+  .breakdown-row { font-size: 15px; }
+  .breakdown-amt { font-size: 17px; }
+
+  .why-grid { flex-direction: row; flex-wrap: wrap; gap: 14px; max-width: 880px; }
+  .why-item { flex: 1 1 calc(50% - 8px); padding: 22px 24px; }
+  .why-text { font-size: 15px; }
+
+  .workflow { max-width: 720px; }
+  .flow-step { padding: 18px 0; }
+  .flow-num { font-size: 32px; min-width: 48px; }
+  .flow-text strong { font-size: 18px; }
+  .flow-text span { font-size: 14px; }
+
+  .slide-12 h2 { font-size: 54px; max-width: 600px; }
+  .slide-12 .ask-sub { font-size: 18px; max-width: 460px; }
+  .commit-list { max-width: 420px; }
+  .commit-item { font-size: 15px; }
+}
+
+@media (max-width: 380px) {
+  .slide { padding: 48px 24px; }
+  .income-big { font-size: 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== SLIDE 1: TITLE ========== -->
+<section class="slide slide-1">
+  <div class="slide-num dark-num"><span>01</span> · 11</div>
+  <div class="brand-mark">TLD</div>
+  <div class="role-label">Account Executive</div>
+  <h1>TradeLine <span class="italic">Digital.</span></h1>
+  <p class="tagline">Uncapped commission. <strong>Real product.</strong> Yours to scale.</p>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ========== SLIDE 2: THE BUSINESS ========== -->
+<section class="slide slide-light">
+  <div class="slide-num light-num"><span>02</span> · 11</div>
+  <div class="eyebrow gold-deep">The Business</div>
+  <h2>We sell <span class="italic">website audits</span> to small businesses that are bleeding money online.</h2>
+  <p class="body-text">Contractors, roofers, plumbers, painters, hardwood floor specialists, cleaning companies. The product is a <strong>$1,495 deep audit</strong> that identifies what's broken on their website and exactly how to fix it. We don't build the fix — we refer that work to vetted partner agencies and collect referral fees.</p>
+
+  <div class="biz-points">
+    <div class="biz-point">
+      <div class="biz-point-label">The Product</div>
+      <p>$1,495 deep audit. <span class="italic">Productized.</span> Same scope, same price, every customer.</p>
+    </div>
+    <div class="biz-point">
+      <div class="biz-point-label">The Market</div>
+      <p>Every contractor truck on the highway is a <span class="italic">lead.</span></p>
+    </div>
+    <div class="biz-point">
+      <div class="biz-point-label">The Hand-off</div>
+      <p>You sell and deliver. <span class="italic">Partners</span> handle the build.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 3: THE ROLE ========== -->
+<section class="slide slide-dark">
+  <div class="slide-num dark-num"><span>03</span> · 11</div>
+  <div class="eyebrow gold">The Role</div>
+  <h2>You're the <span class="italic">front line.</span><br>Pure sales, no technical work.</h2>
+  <p class="body-text">You prospect, qualify, close, and deliver the audit walkthrough. You own the customer relationship from first contact to hand-off. <strong>You don't write code, manage developers, or troubleshoot websites.</strong> That work happens elsewhere.</p>
+
+  <div class="role-cols">
+    <div class="role-col yes">
+      <div class="role-col-label">What You Do</div>
+      <ul>
+        <li>Prospect contractors and home service businesses</li>
+        <li>Run free 1-page diagnostics to open the door</li>
+        <li>Close the $1,495 deep audit</li>
+        <li>Deliver via a 30-minute walkthrough call</li>
+        <li>Hand off implementation to partner agencies</li>
+      </ul>
+    </div>
+    <div class="role-col no">
+      <div class="role-col-label">What You Don't</div>
+      <ul>
+        <li>Write code or build websites</li>
+        <li>Produce the audit itself</li>
+        <li>Manage developers or projects</li>
+        <li>Handle post-launch issues</li>
+        <li>Sit through technical Q&amp;A you can't answer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 4: COMP SNAPSHOT ========== -->
+<section class="slide slide-light">
+  <div class="slide-num light-num"><span>04</span> · 11</div>
+  <div class="eyebrow gold-deep">Compensation</div>
+  <h2>Pure commission.<br>The more you sell, <span class="italic">the more you make.</span></h2>
+  <p class="body-text">1099 contract. No salary, no draw, no base. Paid only when TradeLine Digital gets paid. Audit fees within 7 days, bonuses by the 10th of the following month. <strong>Cross 100 audits in a calendar year — your per-audit pay doubles.</strong></p>
+
+  <div class="tiers">
+    <div class="tier">
+      <div class="tier-label">Tier 01</div>
+      <div class="tier-name">Starter</div>
+      <div class="tier-range">Audits 1–99 in a calendar year</div>
+      <div class="tier-pay-row">
+        <div class="tier-pay-label">Per paid audit</div>
+        <div class="tier-pay-amt">$375</div>
+      </div>
+      <div class="tier-pay-row">
+        <div class="tier-pay-label">Friend-rate audit</div>
+        <div class="tier-pay-amt">$150</div>
+      </div>
+    </div>
+    <div class="tier tier-2">
+      <div class="tier-label">Tier 02</div>
+      <div class="tier-name">Producer</div>
+      <div class="tier-range">Audits 100+ in a calendar year</div>
+      <div class="tier-pay-row">
+        <div class="tier-pay-label">Per paid audit</div>
+        <div class="tier-pay-amt">$750</div>
+      </div>
+      <div class="tier-pay-row">
+        <div class="tier-pay-label">Doubles on audit #100</div>
+        <div class="tier-pay-amt">2×</div>
+      </div>
+    </div>
+  </div>
+  <div class="comp-bonus">
+    <strong>$300 bonus</strong> every time an audit converts to a paid project with a partner agency.
+  </div>
+</section>
+
+<!-- ========== SLIDE 5: SIDE HUSTLE ========== -->
+<section class="slide slide-income">
+  <div class="slide-num dark-num"><span>05</span> · 11</div>
+  <div class="income-eyebrow">Scenario 01</div>
+  <div class="income-pace">Side hustle pace</div>
+  <div class="income-volume">25 audits a year</div>
+  <div class="income-big">$11,775</div>
+  <div class="income-big-sub">Roughly two hours a week of selling.</div>
+  <div class="income-breakdown">
+    <div class="breakdown-row">
+      <div class="breakdown-label">25 audits × $375</div>
+      <div class="breakdown-amt">$9,375</div>
+    </div>
+    <div class="breakdown-row">
+      <div class="breakdown-label">8 conversion bonuses × $300</div>
+      <div class="breakdown-amt">$2,400</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 6: STEADY ========== -->
+<section class="slide slide-income">
+  <div class="slide-num dark-num"><span>06</span> · 11</div>
+  <div class="income-eyebrow">Scenario 02</div>
+  <div class="income-pace">Steady pace</div>
+  <div class="income-volume">75 audits a year</div>
+  <div class="income-big">$35,625</div>
+  <div class="income-big-sub">Six audits a month. Still part-time.</div>
+  <div class="income-breakdown">
+    <div class="breakdown-row">
+      <div class="breakdown-label">75 audits × $375</div>
+      <div class="breakdown-amt">$28,125</div>
+    </div>
+    <div class="breakdown-row">
+      <div class="breakdown-label">25 conversion bonuses × $300</div>
+      <div class="breakdown-amt">$7,500</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 7: TIER 2 CROSSING ========== -->
+<section class="slide slide-income">
+  <div class="slide-num dark-num"><span>07</span> · 11</div>
+  <div class="income-eyebrow">Scenario 03</div>
+  <div class="income-pace">Cross into Tier 2</div>
+  <div class="income-volume">150 audits a year</div>
+  <div class="income-big">$90,375</div>
+  <div class="income-big-sub">Audit #100 is when the math changes.</div>
+  <div class="income-breakdown">
+    <div class="breakdown-row">
+      <div class="breakdown-label">First 99 × $375</div>
+      <div class="breakdown-amt">$37,125</div>
+    </div>
+    <div class="breakdown-row">
+      <div class="breakdown-label">Next 51 × $750</div>
+      <div class="breakdown-amt">$38,250</div>
+    </div>
+    <div class="breakdown-row">
+      <div class="breakdown-label">50 conversion bonuses × $300</div>
+      <div class="breakdown-amt">$15,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 8: FULL THROTTLE ========== -->
+<section class="slide slide-income">
+  <div class="slide-num dark-num"><span>08</span> · 11</div>
+  <div class="income-eyebrow">Scenario 04</div>
+  <div class="income-pace">Full throttle</div>
+  <div class="income-volume">250 audits a year</div>
+  <div class="income-big">$175,875</div>
+  <div class="income-big-sub">Five audits a week. Salesperson territory.</div>
+  <div class="income-breakdown">
+    <div class="breakdown-row">
+      <div class="breakdown-label">First 99 × $375</div>
+      <div class="breakdown-amt">$37,125</div>
+    </div>
+    <div class="breakdown-row">
+      <div class="breakdown-label">Next 151 × $750</div>
+      <div class="breakdown-amt">$113,250</div>
+    </div>
+    <div class="breakdown-row">
+      <div class="breakdown-label">85 conversion bonuses × $300</div>
+      <div class="breakdown-amt">$25,500</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 9: WHY THIS WORKS ========== -->
+<section class="slide slide-light">
+  <div class="slide-num light-num"><span>09</span> · 11</div>
+  <div class="eyebrow gold-deep">Why This Works</div>
+  <h2>This isn't a <span class="italic">commission gimmick.</span><br>It's a real business.</h2>
+
+  <div class="why-grid">
+    <div class="why-item">
+      <span class="why-num">i.</span>
+      <span class="why-text"><strong>Uncapped income</strong>The more you sell, the more you make. Cross 100 and your per-audit pay doubles for the rest of the year.</span>
+    </div>
+    <div class="why-item">
+      <span class="why-num">ii.</span>
+      <span class="why-text"><strong>Customers come back</strong>Audits aren't one-and-done. Same product, same price, same commission — every year or every quarter.</span>
+    </div>
+    <div class="why-item">
+      <span class="why-num">iii.</span>
+      <span class="why-text"><strong>Easy to find leads</strong>Every contractor truck on the highway. Every business with a website. The market is enormous.</span>
+    </div>
+    <div class="why-item">
+      <span class="why-num">iv.</span>
+      <span class="why-text"><strong>Real product behind the pitch</strong>You're selling a genuinely useful 12–20 page report. Not vapor. Not retainer fluff.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 10: WORKFLOW ========== -->
+<section class="slide slide-light">
+  <div class="slide-num light-num"><span>10</span> · 11</div>
+  <div class="eyebrow gold-deep">Day-to-Day</div>
+  <h2>The workflow, <span class="italic">end to end.</span></h2>
+
+  <div class="workflow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-text">
+        <strong>Prospect</strong>
+        <span>Cold outreach, networking, referrals, driving past contractor trucks.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-text">
+        <strong>Submit intake</strong>
+        <span>Structured form with business basics, competitors, keywords, GBP screenshot.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-text">
+        <strong>Deliver free diagnostic</strong>
+        <span>One-page report opens the door. Use it to pitch the $1,495 deep audit.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-text">
+        <strong>Close the audit</strong>
+        <span>Customer pays $1,495 upfront. Audit gets produced.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">05</div>
+      <div class="flow-text">
+        <strong>Walkthrough call</strong>
+        <span>30-minute call delivering findings. Hand off to partner agency. Collect within 7 days.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 11: THE ASK ========== -->
+<section class="slide slide-12">
+  <div class="slide-num dark-num"><span>11</span> · 11</div>
+  <div class="ask-eyebrow">The Ask</div>
+  <h2>If you want <span class="italic">uncapped sales income</span> on a real product —</h2>
+  <p class="ask-sub">Let's start ramping. I'll get you the first prospect list and walk you through the intake form this week.</p>
+
+  <div class="commit-list">
+    <div class="commit-item">Pure commission, 1099 contract</div>
+    <div class="commit-item">Audits paid within 7 days of customer payment</div>
+    <div class="commit-item">Laptop and AI tools after your first 10 closes</div>
+    <div class="commit-item">Keep your existing sales work — this isn't exclusive</div>
+  </div>
+</section>
+
+</body>
+</html>
