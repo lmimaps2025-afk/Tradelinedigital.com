@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0D1B3E">
+<meta name="robots" content="noindex, nofollow">
+<title>Sales Intake — Internal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0D1B3E;
+  --navy-deep: #0a1530;
+  --navy-mid: #132448;
+  --gold: #C9952A;
+  --gold-light: #e0aa3a;
+  --gold-deep: #a87a1f;
+  --white: #ffffff;
+  --off-white: #faf8f4;
+  --paper: #f4f1ea;
+  --text-primary: #0D1B3E;
+  --text-secondary: #5a5f6e;
+  --text-muted: #8a8f9a;
+  --line-light: #e3e0d8;
+  --line-mid: #c8c3b7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  background: var(--off-white);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.top-band {
+  height: 4px;
+  background: var(--gold);
+}
+
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--line-light);
+  padding: 18px 0;
+}
+.header-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wordmark {
+  font-family: 'Newsreader', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.eyebrow-header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gold-deep);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero {
+  background: var(--white);
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--line-light);
+}
+.hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.hero h1 {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  font-variation-settings: "opsz" 72;
+  margin-bottom: 12px;
+}
+.hero p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+.form-section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 24px 80px;
+}
+
+.form-step {
+  background: var(--white);
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  padding: 26px 26px 22px;
+  margin-bottom: 14px;
+}
+
+.step-number {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--gold-deep);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.step-label {
+  font-family: 'Newsreader', serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  margin-bottom: 4px;
+}
+
+.step-help {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.input-grid-full {
+  grid-column: 1 / -1;
+}
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+label.input-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="date"], textarea {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  color: var(--navy);
+  padding: 10px 12px;
+  border: 1px solid var(--line-mid);
+  border-radius: 3px;
+  background: var(--white);
+  transition: border-color 0.15s;
+  width: 100%;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: 'Inter Tight', sans-serif;
+}
+
+.button-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.option-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line-mid);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.option-btn:hover {
+  border-color: var(--gold);
+  background: var(--off-white);
+}
+.option-btn.selected {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.option-btn input {
+  display: none;
+}
+
+.option-btn.hot.selected { background: #b8402a; border-color: #b8402a; }
+.option-btn.warm.selected { background: var(--gold-deep); border-color: var(--gold-deep); }
+.option-btn.cold.selected { background: #5a5f6e; border-color: #5a5f6e; }
+.option-btn.tire.selected { background: #8a8f9a; border-color: #8a8f9a; }
+
+.submit-section {
+  background: var(--navy);
+  border-radius: 4px;
+  padding: 26px 26px;
+  margin-top: 22px;
+  color: var(--white);
+}
+.submit-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.submit-headline {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.submit-detail {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
+  padding: 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.submit-btn:hover {
+  background: var(--gold-light);
+}
+
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--line-light);
+  padding: 30px 0;
+}
+.footer-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.footer-inner .left { font-weight: 500; color: var(--text-secondary); }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 28px; }
+  .hero { padding: 36px 0 24px; }
+  .form-step { padding: 20px 18px 18px; }
+  .step-label { font-size: 16px; }
+  .input-grid { grid-template-columns: 1fr; }
+  .submit-section { padding: 22px 18px; }
+  .footer-inner { flex-direction: column; gap: 4px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-band"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="wordmark">TradeLine Digital</div>
+    <div class="eyebrow-header">Sales Intake · Internal</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Sales intake.</h1>
+    <p>Fill this out after every prospect conversation — whether they paid or not. Helps Brian produce a sharper audit and helps you track your pipeline.</p>
+  </div>
+</section>
+
+<section class="form-section">
+  <form id="nolanForm" autocomplete="on">
+
+    <!-- STEP 1: Prospect basics -->
+    <div class="form-step">
+      <div class="step-number">Step 1 of 7</div>
+      <div class="step-label">Prospect basics.</div>
+      <div class="step-help">Who they are and where to find them.</div>
+      <div class="input-grid">
+        <div class="input-wrap input-grid-full">
+          <label class="input-label">Business name</label>
+          <input type="text" name="business_name" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">Contact name</label>
+          <input type="text" name="contact_name" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">City / region served</label>
+          <input type="text" name="region" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">Phone</label>
+          <input type="tel" name="phone" required>
+        </div>
+        <div class="input-wrap input-grid-full">
+          <label class="input-label">Website URL</label>
+          <input type="url" name="website" placeholder="https://" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Lead source -->
+    <div class="form-step">
+      <div class="step-number">Step 2 of 7</div>
+      <div class="step-label">Where did this prospect come from?</div>
+      <div class="step-help">Pick one. Tracks which channels are producing.</div>
+      <div class="button-options" data-name="lead_source" data-mode="single">
+        <label class="option-btn"><input type="radio" name="lead_source" value="cold">Cold outreach</label>
+        <label class="option-btn"><input type="radio" name="lead_source" value="referral_tld">Referral from existing TLD customer</label>
+        <label class="option-btn"><input type="radio" name="lead_source" value="referral_other">Referral from non-TLD source</label>
+        <label class="option-btn"><input type="radio" name="lead_source" value="networking">Networking / in-person meeting</label>
+        <label class="option-btn"><input type="radio" name="lead_source" value="spotted">Truck / job site I spotted</label>
+        <label class="option-btn"><input type="radio" name="lead_source" value="inbound">Inbound from TLD website</label>
+        <label class="option-btn"><input type="radio" name="lead_source" value="other">Other</label>
+      </div>
+    </div>
+
+    <!-- STEP 3: Conversation summary -->
+    <div class="form-step">
+      <div class="step-number">Step 3 of 7</div>
+      <div class="step-label">What did this prospect tell you about their business?</div>
+      <div class="step-help">What stood out? What surprised you? Anything important to know about their situation?</div>
+      <textarea name="conversation_summary" required placeholder="Write 3-5 sentences. The more specifics, the sharper Brian's audit."></textarea>
+    </div>
+
+    <!-- STEP 4: Stated concern -->
+    <div class="form-step">
+      <div class="step-number">Step 4 of 7</div>
+      <div class="step-label">What's the biggest problem they want solved?</div>
+      <div class="step-help">In their words if possible. This is the headline of what they care about.</div>
+      <textarea name="stated_concern" required></textarea>
+    </div>
+
+    <!-- STEP 5: Your observations -->
+    <div class="form-step">
+      <div class="step-number">Step 5 of 7</div>
+      <div class="step-label">Your observations.</div>
+      <div class="step-help">What did you notice about their website or business that they might not have mentioned? This is where Nolan adds value.</div>
+      <textarea name="observations" required placeholder="Quick notes on the site, the GBP, anything that caught your eye, anything Brian should pay attention to."></textarea>
+    </div>
+
+    <!-- STEP 6: Closing likelihood -->
+    <div class="form-step">
+      <div class="step-number">Step 6 of 7</div>
+      <div class="step-label">Your gut read — how likely are they to buy the audit?</div>
+      <div class="step-help">Pick one. Helps Brian prioritize and helps you track your close rate.</div>
+      <div class="button-options" data-name="likelihood" data-mode="single">
+        <label class="option-btn hot"><input type="radio" name="likelihood" value="hot">Hot — close this week</label>
+        <label class="option-btn warm"><input type="radio" name="likelihood" value="warm">Warm — interested, deciding</label>
+        <label class="option-btn cold"><input type="radio" name="likelihood" value="cold">Cold — long shot</label>
+        <label class="option-btn tire"><input type="radio" name="likelihood" value="tire">Tire-kicker — probably won't pay</label>
+      </div>
+    </div>
+
+    <!-- STEP 7: Priority + date -->
+    <div class="form-step">
+      <div class="step-number">Step 7 of 7</div>
+      <div class="step-label">Priority + date.</div>
+      <div class="step-help">If they pay, how should Brian treat their audit?</div>
+      <div class="button-options" data-name="priority" data-mode="single" style="margin-bottom: 16px;">
+        <label class="option-btn"><input type="radio" name="priority" value="standard">Standard — normal 7-day turnaround</label>
+        <label class="option-btn"><input type="radio" name="priority" value="priority">Priority — close to closing, fast turnaround helps</label>
+        <label class="option-btn"><input type="radio" name="priority" value="strategic">Strategic — high-value prospect, extra polish</label>
+      </div>
+      <div class="input-wrap" style="max-width: 220px;">
+        <label class="input-label">Date of conversation</label>
+        <input type="date" name="conversation_date" required>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <div class="submit-eyebrow">Submit Intake</div>
+      <div class="submit-headline">Goes straight to the pipeline.</div>
+      <p class="submit-detail">Brian will see this in the queue. If they pay, this intake gets matched to their order automatically.</p>
+      <button type="submit" class="submit-btn">Submit Intake</button>
+    </div>
+
+  </form>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="left">TradeLine Digital · Internal Use</span>
+    <span>Nolan Catton · nolan@tradelinedigital.com</span>
+  </div>
+</footer>
+
+<script>
+// Set today's date as default for conversation_date
+document.querySelector('input[name="conversation_date"]').valueAsDate = new Date();
+
+// Button option toggling
+document.querySelectorAll('.button-options').forEach(group => {
+  const mode = group.dataset.mode;
+  group.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const input = btn.querySelector('input');
+      if (mode === 'single') {
+        group.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        input.checked = true;
+      } else {
+        btn.classList.toggle('selected');
+        input.checked = btn.classList.contains('selected');
+      }
+    });
+  });
+});
+
+// Preview-only submit handler
+document.getElementById('nolanForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert('Preview mode — form submission not wired yet. In production, this would save to the Google Sheet (Nolan Intake tab).');
+});
+</script>
+
+</body>
+</html>

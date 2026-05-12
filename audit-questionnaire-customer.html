@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0D1B3E">
+<title>Start Your Audit — TradeLine Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0D1B3E;
+  --navy-deep: #0a1530;
+  --navy-mid: #132448;
+  --gold: #C9952A;
+  --gold-light: #e0aa3a;
+  --gold-deep: #a87a1f;
+  --white: #ffffff;
+  --off-white: #faf8f4;
+  --paper: #f4f1ea;
+  --text-primary: #0D1B3E;
+  --text-secondary: #5a5f6e;
+  --text-muted: #8a8f9a;
+  --line-light: #e3e0d8;
+  --line-mid: #c8c3b7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  background: var(--off-white);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ----- TOP BAND ----- */
+.top-band {
+  height: 4px;
+  background: var(--gold);
+}
+
+/* ----- HEADER ----- */
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--line-light);
+  padding: 18px 0;
+}
+.header-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wordmark {
+  font-family: 'Newsreader', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.eyebrow-header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gold-deep);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ----- HERO ----- */
+.hero {
+  background: var(--white);
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--line-light);
+}
+.hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.hero h1 {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  font-variation-settings: "opsz" 72;
+  margin-bottom: 14px;
+}
+.hero p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+/* ----- FORM ----- */
+.form-section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.form-step {
+  background: var(--white);
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  padding: 28px 28px 24px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.step-number {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--gold-deep);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.step-label {
+  font-family: 'Newsreader', serif;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  margin-bottom: 4px;
+}
+
+.step-help {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+/* ----- INPUTS ----- */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.input-grid-full {
+  grid-column: 1 / -1;
+}
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+label.input-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  color: var(--navy);
+  padding: 10px 12px;
+  border: 1px solid var(--line-mid);
+  border-radius: 3px;
+  background: var(--white);
+  transition: border-color 0.15s;
+  width: 100%;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+textarea {
+  resize: vertical;
+  min-height: 70px;
+  font-family: 'Inter Tight', sans-serif;
+}
+
+/* ----- BUTTON OPTIONS ----- */
+.button-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.option-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line-mid);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.option-btn:hover {
+  border-color: var(--gold);
+  background: var(--off-white);
+}
+.option-btn.selected {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.option-btn input {
+  display: none;
+}
+
+/* ----- SUBMIT ----- */
+.submit-section {
+  background: var(--navy);
+  border-radius: 4px;
+  padding: 32px 28px;
+  margin-top: 24px;
+  color: var(--white);
+}
+.submit-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.submit-headline {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.submit-detail {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
+  padding: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.submit-btn:hover {
+  background: var(--gold-light);
+}
+
+.submit-fineprint {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 12px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ----- FOOTER ----- */
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--line-light);
+  padding: 32px 0;
+}
+.footer-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.footer-inner .left { font-weight: 500; color: var(--text-secondary); }
+
+/* ----- MOBILE ----- */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 32px; }
+  .hero { padding: 40px 0 28px; }
+  .form-step { padding: 22px 20px 20px; }
+  .step-label { font-size: 17px; }
+  .input-grid { grid-template-columns: 1fr; }
+  .submit-section { padding: 24px 20px; }
+  .submit-headline { font-size: 22px; }
+  .footer-inner { flex-direction: column; gap: 4px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-band"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="wordmark">TradeLine Digital</div>
+    <div class="eyebrow-header">Audit Intake</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Tell us about your business.</h1>
+    <p>This takes about 5 minutes. Once you submit, you'll be taken to payment. Your audit is delivered within 7 business days.</p>
+  </div>
+</section>
+
+<section class="form-section">
+  <form id="auditForm" autocomplete="on">
+
+    <!-- STEP 1: Business basics -->
+    <div class="form-step">
+      <div class="step-number">Step 1 of 9</div>
+      <div class="step-label">Your business.</div>
+      <div class="step-help">A few quick details so we know who the audit is for.</div>
+      <div class="input-grid">
+        <div class="input-wrap input-grid-full">
+          <label class="input-label">Business name</label>
+          <input type="text" name="business_name" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">Your name</label>
+          <input type="text" name="contact_name" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">Phone</label>
+          <input type="tel" name="phone" required>
+        </div>
+        <div class="input-wrap">
+          <label class="input-label">Website URL</label>
+          <input type="url" name="website" placeholder="https://" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Business type -->
+    <div class="form-step">
+      <div class="step-number">Step 2 of 9</div>
+      <div class="step-label">What kind of business do you run?</div>
+      <div class="step-help">Pick one. Helps us calibrate the revenue math for your industry.</div>
+      <div class="button-options" data-name="business_type" data-mode="single">
+        <label class="option-btn"><input type="radio" name="business_type" value="trades">Trades / home services</label>
+        <label class="option-btn"><input type="radio" name="business_type" value="real_estate">Real estate / mortgage</label>
+        <label class="option-btn"><input type="radio" name="business_type" value="pro_services">Professional services</label>
+        <label class="option-btn"><input type="radio" name="business_type" value="health">Health / wellness</label>
+        <label class="option-btn"><input type="radio" name="business_type" value="retail">Local retail or restaurant</label>
+        <label class="option-btn"><input type="radio" name="business_type" value="ecommerce">E-commerce</label>
+        <label class="option-btn"><input type="radio" name="business_type" value="b2b">B2B services</label>
+        <label class="option-btn"><input type="radio" name="business_type" value="other">Other</label>
+      </div>
+    </div>
+
+    <!-- STEP 3: What do you want more of -->
+    <div class="form-step">
+      <div class="step-number">Step 3 of 9</div>
+      <div class="step-label">If your website worked harder, what would you want more of?</div>
+      <div class="step-help">Pick the one that matters most. We'll focus the audit there.</div>
+      <div class="button-options" data-name="primary_goal" data-mode="single">
+        <label class="option-btn"><input type="radio" name="primary_goal" value="more_calls">More phone calls or form fills</label>
+        <label class="option-btn"><input type="radio" name="primary_goal" value="quality_leads">Higher-quality leads</label>
+        <label class="option-btn"><input type="radio" name="primary_goal" value="higher_ticket">Larger projects or higher-ticket clients</label>
+        <label class="option-btn"><input type="radio" name="primary_goal" value="local_visibility">Visibility in my local market</label>
+        <label class="option-btn"><input type="radio" name="primary_goal" value="authority">Authority — being seen as the expert</label>
+        <label class="option-btn"><input type="radio" name="primary_goal" value="repeat_referrals">More repeat business or referrals</label>
+        <label class="option-btn"><input type="radio" name="primary_goal" value="other">Other</label>
+      </div>
+    </div>
+
+    <!-- STEP 4: Ideal customer -->
+    <div class="form-step">
+      <div class="step-number">Step 4 of 9</div>
+      <div class="step-label">Who do you want more of?</div>
+      <div class="step-help">Pick everything that fits. Helps us understand who you're trying to reach.</div>
+      <div class="button-options" data-name="ideal_customer" data-mode="multi">
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="individuals">Individual consumers / homeowners</label>
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="businesses">Businesses / B2B</label>
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="premium">High-end / premium customers</label>
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="volume">Volume / standard customers</label>
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="local_only">Local customers only</label>
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="regional">Regional or national reach</label>
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="repeat">Repeat customers</label>
+        <label class="option-btn"><input type="checkbox" name="ideal_customer" value="referral">Referral-driven customers</label>
+      </div>
+    </div>
+
+    <!-- STEP 5: Current lead sources -->
+    <div class="form-step">
+      <div class="step-number">Step 5 of 9</div>
+      <div class="step-label">Where do most of your current leads come from?</div>
+      <div class="step-help">Pick everything that applies. Helps us understand what's already working.</div>
+      <div class="button-options" data-name="lead_sources" data-mode="multi">
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="word_of_mouth">Word of mouth / referrals</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="repeat">Repeat customers</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="google_search">Google search</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="gbp">Google Business Profile</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="social">Social media</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="paid_ads">Paid ads</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="website">My existing website</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="networking">Direct outreach / networking</label>
+        <label class="option-btn"><input type="checkbox" name="lead_sources" value="walkins">Walk-ins / drive-bys</label>
+      </div>
+    </div>
+
+    <!-- STEP 6: Competitors (optional text) -->
+    <div class="form-step">
+      <div class="step-number">Step 6 of 9</div>
+      <div class="step-label">Local competitors who win the work you wish you were winning.</div>
+      <div class="step-help">Optional. We'll research competitors regardless — your insights help us focus.</div>
+      <textarea name="competitors" placeholder="Name 1–3 competitors (or leave blank)"></textarea>
+    </div>
+
+    <!-- STEP 7: Implementation appetite -->
+    <div class="form-step">
+      <div class="step-number">Step 7 of 9</div>
+      <div class="step-label">After the audit, who's most likely to do the actual work?</div>
+      <div class="step-help">Pick one. Shapes how specific our recommendations get.</div>
+      <div class="button-options" data-name="implementation" data-mode="single">
+        <label class="option-btn"><input type="radio" name="implementation" value="diy">I'll do it myself with my own team</label>
+        <label class="option-btn"><input type="radio" name="implementation" value="existing_partner">I have a designer or marketer I work with</label>
+        <label class="option-btn"><input type="radio" name="implementation" value="recommend_partner">I'd like a recommendation for a partner agency</label>
+        <label class="option-btn"><input type="radio" name="implementation" value="not_sure">Not sure yet — show me my options</label>
+      </div>
+    </div>
+
+    <!-- STEP 8: Budget -->
+    <div class="form-step">
+      <div class="step-number">Step 8 of 9</div>
+      <div class="step-label">Rough budget for implementation work after the audit.</div>
+      <div class="step-help">So our recommendations match what you can actually do.</div>
+      <div class="button-options" data-name="budget" data-mode="single">
+        <label class="option-btn"><input type="radio" name="budget" value="under_5k">Under $5,000</label>
+        <label class="option-btn"><input type="radio" name="budget" value="5k_15k">$5,000 – $15,000</label>
+        <label class="option-btn"><input type="radio" name="budget" value="15k_30k">$15,000 – $30,000</label>
+        <label class="option-btn"><input type="radio" name="budget" value="30k_plus">$30,000+</label>
+        <label class="option-btn"><input type="radio" name="budget" value="not_sure">Not sure yet — depends on what you find</label>
+      </div>
+    </div>
+
+    <!-- STEP 9: Anything else -->
+    <div class="form-step">
+      <div class="step-number">Step 9 of 9</div>
+      <div class="step-label">Anything else we should know?</div>
+      <div class="step-help">Optional. Anything that didn't fit above.</div>
+      <textarea name="anything_else" placeholder="(Optional)"></textarea>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <div class="submit-eyebrow">Final Step</div>
+      <div class="submit-headline">$1,495. Delivered in 7 business days.</div>
+      <p class="submit-detail">You'll be taken to payment after you submit. The audit pays for itself if it surfaces even one $5K opportunity. Most surface several.</p>
+      <button type="submit" class="submit-btn">Submit & Pay $1,495</button>
+      <div class="submit-fineprint">Secure payment processed by Stripe. Refund available if you change your mind before research starts.</div>
+    </div>
+
+  </form>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="left">TradeLine Digital</span>
+    <span>brian@tradelinedigital.com · (866) 398-2507</span>
+  </div>
+</footer>
+
+<script>
+// Toggle selection state for button-option groups
+document.querySelectorAll('.button-options').forEach(group => {
+  const mode = group.dataset.mode;
+  group.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const input = btn.querySelector('input');
+      if (mode === 'single') {
+        group.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        input.checked = true;
+      } else {
+        btn.classList.toggle('selected');
+        input.checked = btn.classList.contains('selected');
+      }
+    });
+  });
+});
+
+// Preview-only submit handler (real submit goes to Stripe + Sheet later)
+document.getElementById('auditForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert('Preview mode — form submission not wired yet. In production, this would save to Google Sheets and redirect to Stripe payment.');
+});
+</script>
+
+</body>
+</html>
